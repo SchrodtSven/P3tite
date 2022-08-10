@@ -18,5 +18,7 @@ require_once 'src/P3tite/Autoload.php';
 
 use P3tite\Communication\Http\Request;
 use P3tite\Mvc\Router;
-
+ 
 $router = new Router(new Request());
+var_dump($router);
+ 

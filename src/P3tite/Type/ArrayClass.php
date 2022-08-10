@@ -36,7 +36,7 @@ class ArrayClass implements \Countable
         return $this->content[$index] ?? null;
     }
 
-    public function set(int $index, $value): self
+    public function set(int $index, mixed $value): self
     {
         $this->content[$index] ?? null;
         return $this;
@@ -51,12 +51,7 @@ class ArrayClass implements \Countable
         return $this;
     }
 
-    public function concat(string $addition): self
-    {
-        $this->content .= $addition;
-        return $this;
-    }
-
+    
     public function save(): self
     {
         $this->before = $this->content;
@@ -82,6 +77,29 @@ class ArrayClass implements \Countable
     public function count(): int
     {
         return count($this->content);
+    }
+
+    public function push(mixed $value): self
+    {   
+        array_push($this-> content, $value);
+        return $this;
+    }
+
+    
+    public function pop(): mixed
+    {
+        return array_pop($this->content);
+    }
+
+    public function shift(): mixed
+    {
+        return array_shift($this->content);
+    }
+
+    public function unshift(mixed $value): self
+    {
+        array_unshift($this->content, $value);
+        return $this;
     }
 
 }

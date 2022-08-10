@@ -12,25 +12,27 @@ declare(strict_types=1);
  * @version 0.1
  * @since 2022-08-09
  */
+
 namespace P3tite\Mvc;
+
 use P3tite\Communication\Http\Request;
 use P3tite\Type\StringClass;
 use P3tite\Type\ArrayClass;
 
- class Router
- {
+class Router
+{
 
 
     protected const DEFAULT_MODULE = 'App';
 
-    protected const CONTROLLER_MODULE = 'Index';
+    protected const DEFAULT_CONTROLLER = 'Index';
 
-    protected const ACTION_MODULE = 'default';
+    protected const DEFAULT_ACTION = 'default';
 
     protected string $module = '';
 
     protected string $controller = '';
-    
+
     protected string $action = '';
 
     public function __construct(Request $request)
@@ -40,12 +42,42 @@ use P3tite\Type\ArrayClass;
 
     protected function parseUri(Request $request)
     {
-        $tmp = (new StringClass($request->getRequestUri()))
-        ->splitBy('/', true);
-        var_dump($tmp);
-    }
-    
+        $uri = new StringClass($request->getRequestUri());
+        
+        if($uri->position('?') !== false) {
+            $uri = $uri->subString(0, $uri->position('?'));
+        };
 
+        $tmp = $uri->splitBy('/', true, true);
+
+        
+        switch (count($tmp)) {
+            case 0:
+                $this->setModule(self::DEFAULT_MODULE);
+                $this->setController(self::DEFAULT_CONTROLLER);
+                $this->setAction(self::DEFAULT_ACTION);
+                break;
+
+            case 1:
+                $this->setModule(self::DEFAULT_MODULE);
+                $this->setController(self::DEFAULT_CONTROLLER);
+                $this->setAction(strtolower($tmp->get(0)));
+                break;
+
+            case 2:
+                $this->setModule(self::DEFAULT_MODULE);
+                $this->setController(ucfirst(strtolower($tmp->get(0))));
+                $this->setAction(strtolower($tmp->get(1)));
+                break;
+
+
+            default:
+                $this->setModule(ucfirst(strtolower($tmp->get(0))));
+                $this->setController(ucfirst(strtolower($tmp->get(1))));
+                $this->setAction(strtolower($tmp->get(2)));
+                break;
+        }
+    }
 
     /**
      * Get the value of module
@@ -115,4 +147,4 @@ use P3tite\Type\ArrayClass;
         $this->controller = $controller;
         return $this;
     }
- }
+}
