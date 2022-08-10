@@ -12,13 +12,22 @@ use PHPUnit\Framework\TestCase;
 
 class FooTest extends TestCase
 {
+
+    private const POPE = 666;
+
     /**
      * @dataProvider doubleProvider
      */
-    public function testDouble(int  $input, int $expected)
+    public function testDouble(int  $input, int $expected): void
     {
         $bar = new \P3tite\Core\Foo();
         $this->assertTrue($bar->doubleMe($input) === $expected);
+         
+    }
+
+    public function testGod()
+    {
+        $this->assertSame(self::POPE, 2* 333);
     }
 
     public function doubleProvider(): array

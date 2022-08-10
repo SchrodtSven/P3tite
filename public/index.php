@@ -1,4 +1,7 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
 /**
  * Bootstrapping in document root
  * 
@@ -6,10 +9,14 @@
  * @link https://github.com/SchrodtSven/P3tite
  * @package P3tite
  * @version 0.1
+ * @since 2022-08-09
  */
+//die(getcwd());
+//  require_once '../src/P3tite/Autoload.php';
+require_once 'src/P3tite/Autoload.php';
+//chdir('../');
 
- require_once '../src/P3tite/Autoload.php';
- chdir('../');
- 
- $me = new \P3tite\Core\Foo();
- var_dump($me);
+use P3tite\Communication\Http\Request;
+use P3tite\Mvc\Router;
+
+$router = new Router(new Request());
