@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @package P3tite
  * @version 0.1
  * @since 2022-08-09
+ * 
  */
 
 namespace P3tite\Communication\Http;
@@ -26,17 +27,17 @@ class Request
 
     public function __construct()
     {
+              $this->init();
+    }
+
+    private function init()
+    {
         $this->requestUri = $_SERVER['REQUEST_URI'] ?? null;
         $this->requestMethod = $_SERVER['REQUEST_METHOD'] ?? null;
         $this->httpUpgradeInsecureRequests = $_SERVER['HTTP_UPGRADE_INSECURE_REQUESTS'] ?? null;
         $this->requestTimeFloat = (float)$_SERVER['REQUEST_TIME_FLOAT'] ?? null;
         $this->requestTime = (int)$_SERVER['REQUEST_TIME'] ?? null;
-        $this->init();
-    }
 
-    private function init()
-    {
-        //@TODO parse super globals $_POST, $_GET or php input stream, if PUT into self::parameters
         switch ($this->requestMethod) {
             case 'PUT':
                 parse_str(file_get_contents('php://input'), $tmp);
@@ -54,59 +55,40 @@ class Request
         $this->parameters = new ArrayClass($tmp);
     }
 
-    /**
-     * @return mixed|string|null
-     */
-    public function getRequestUri(): mixed
+    public function getRequestUri(bool $withQueryString = true): string|null
     {
-        return $this->requestUri;
+        return ($withQueryString)
+            ? $this->requestUri
+            : parse_url($this->requestUri, PHP_URL_PATH);
     }
 
-    /**
-     * To be used, when emulating HTTP console on a shell/CLI (e.g: unit tests, CI chains etc. )
-     * @return mixed|string|null
-     */
     public function setRequestUri(string $uri): self
     {
         $this->requestUri = $uri;
         return $this;
     }
 
-    /**
-     * @return mixed|string|null
-     */
     public function getRequestMethod(): mixed
     {
         return $this->requestMethod;
     }
 
-    /**
-     * @return mixed|string|null
-     */
     public function getHttpUpgradeInsecureRequests(): mixed
     {
         return $this->httpUpgradeInsecureRequests;
     }
 
-    /**
-     * @return float|null
-     */
     public function getRequestTimeFloat(): ?float
     {
         return $this->requestTimeFloat;
     }
 
-    /**
-     * @return int|null
-     */
     public function getRequestTime(): ?int
     {
         return $this->requestTime;
     }
 
-    /**
-     * @return ListType
-     */
+  
     public function getParameters(): ArrayClass
     {
         return $this->parameters;

@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 /**
- * Translating http uris to (module &&) controller && action (&& paramters)  
+ * Translating http uris to (module &&) controller && action 
+ * 
+ * @TODO adding rule sets for static routing etc..
  * 
  * default: /$MODULE/$CONTROLLER/$ACTION
  * 
@@ -23,33 +25,28 @@ class Router
 {
 
 
-    protected const DEFAULT_MODULE = 'App';
+    private const DEFAULT_MODULE = 'App';
 
-    protected const DEFAULT_CONTROLLER = 'Index';
+    private const DEFAULT_CONTROLLER = 'Index';
 
-    protected const DEFAULT_ACTION = 'default';
+    private const DEFAULT_ACTION = 'default';
 
-    protected string $module = '';
+    private string $module = '';
 
-    protected string $controller = '';
+    private string $controller = '';
 
-    protected string $action = '';
+    private string $action = '';
 
     public function __construct(Request $request)
     {
         $this->parseUri($request);
     }
 
-    protected function parseUri(Request $request)
+    private function parseUri(Request $request)
     {
-        $uri = new StringClass($request->getRequestUri());
+        $uri = new StringClass($request->getRequestUri(false));
         
-        if($uri->position('?') !== false) {
-            $uri = $uri->subString(0, $uri->position('?'));
-        };
-
         $tmp = $uri->splitBy('/', true, true);
-
         
         switch (count($tmp)) {
             case 0:
@@ -61,20 +58,20 @@ class Router
             case 1:
                 $this->setModule(self::DEFAULT_MODULE);
                 $this->setController(self::DEFAULT_CONTROLLER);
-                $this->setAction(strtolower($tmp->get(0)));
+                $this->setAction(mb_strtolower($tmp->get(0)));
                 break;
 
             case 2:
                 $this->setModule(self::DEFAULT_MODULE);
                 $this->setController(ucfirst(strtolower($tmp->get(0))));
-                $this->setAction(strtolower($tmp->get(1)));
+                $this->setAction(mb_strtolower($tmp->get(1)));
                 break;
 
 
             default:
-                $this->setModule(ucfirst(strtolower($tmp->get(0))));
-                $this->setController(ucfirst(strtolower($tmp->get(1))));
-                $this->setAction(strtolower($tmp->get(2)));
+                $this->setModule(ucfirst(mb_strtolower($tmp->get(0))));
+                $this->setController(ucfirst(mb_strtolower($tmp->get(1))));
+                $this->setAction(mb_strtolower($tmp->get(2)));
                 break;
         }
     }

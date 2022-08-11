@@ -18,7 +18,12 @@ require_once 'src/P3tite/Autoload.php';
 
 use P3tite\Communication\Http\Request;
 use P3tite\Mvc\Router;
- 
-$router = new Router(new Request());
+ $req = new Request();
+ var_dump($req);
+$router = new Router($req);
 var_dump($router);
- 
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+var_dump($path);
+var_dump($_SERVER['REQUEST_URI']);
+//'https://G0d:n1mdA@L0k1.example.org/Foo/bar/id/999?id=69696#topContent'
+ var_dump(parse_url($_SERVER['REQUEST_URI']));

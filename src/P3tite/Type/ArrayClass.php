@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 /**
- * Class representing array (integer based indices, so called 'list') as instances
+ * Class representing array (integer based indices, so called 'list' or associative 'map|hash|hashmap') as instances
  *  
+ * @TODO - implement \Iterator 
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
@@ -42,6 +43,17 @@ class ArrayClass implements \Countable
         return $this;
     }
 
+
+    public function getByKey(string $key): mixed
+    {
+        return $this->content[$key] ?? null;
+    }
+
+    public function setByKey(string $key, mixed $value): self
+    {
+        $this->content[$key] ?? null;
+        return $this;
+    }
 
     public function unset(int $index): self
     {
@@ -101,5 +113,11 @@ class ArrayClass implements \Countable
         array_unshift($this->content, $value);
         return $this;
     }
-
+    
+    public function walk(callable $callback)
+    {
+        $tmp = $this->getContent();
+        array_walk($tmp, $callback);
+        $this->content = $tmp;
+    }
 }
