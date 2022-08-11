@@ -17,7 +17,7 @@ The main (current) goals are:
 
 ## Files
 
-<code>
+<pre>
 P3tite
 ├── LICENSE
 ├── README.md
@@ -64,4 +64,4 @@ P3tite
 │       ├── Mvc
 │       └── Type
 
-</code>
+</pre>
