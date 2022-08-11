@@ -15,21 +15,40 @@ declare(strict_types=1);
 namespace P3tite\Communication\Http;
 
 use P3tite\Type\ArrayClass;
-
+use P3tite\Type\StringClass;
 
 class Parser
 {
-    public function uri(string $uri, int $component = -1)
+    public function parseUri(string $uri, int $component = -1)
     {
         return parse_url($uri,$component);
     }
 
     public function getUriPart(string $uri, string $part): ?string
     {
-        $tmp = $this->uri($uri);
+        $tmp = $this->parseUri($uri);
         return (array_key_exists($part, $tmp)) 
             ? $tmp[$part]
             : null;
+    }
+
+    /**
+     * Splitting message to header and body part (separated by CRLFCRLF)
+     * 
+     * @FIXME - optimize message splitting (header size) --> multipart messages exist!
+     *
+     * @param string $message
+     * @return array
+     */
+    public function splitMessage(string $message) : ArrayClass
+    {
+        return (new StringClass($message))->splitBy(Protocol::MESSAGE_SEPARATOR);
+    }
+
+    public function parseQueryString(string $queryString) : ArrayClass
+    {
+        mb_parse_str($queryString, $data);
+        return new ArrayClass($data);
     }
     
 }

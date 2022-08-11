@@ -15,6 +15,7 @@ declare(strict_types=1);
 //  require_once '../src/P3tite/Autoload.php';
 require_once 'src/P3tite/Autoload.php';
 //chdir('../');
+
 use P3tite\Communication\Http\Response;
 use P3tite\Communication\Http\Request;
 use P3tite\Mvc\FrontController;

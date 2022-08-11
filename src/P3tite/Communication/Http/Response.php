@@ -16,6 +16,7 @@ namespace P3tite\Communication\Http;
 
 use P3tite\Type\ArrayClass;
 use P3tite\Type\StringClass;
+use P3tite\Communication\Http\Protocol;
 
 class Response
 {
@@ -153,7 +154,7 @@ class Response
         $tmp = (new StringClass($response))->splitBy(Protocol::MESSAGE_SEPARATOR);
         $instance->setHeaders($tmp->get(0));
         $instance->setPayload($tmp->get(1));
-        $tmp = (new StringClass($instance->headers))->splitBy(Protocol::LINE_SEPARATOR);
+        $tmp = (new StringClass($instance->headers))->splitBy(Protocol::HEADER_SEPARATOR);
         $instance->setStatusLine($tmp->shift());
         $tmp->walk(function($item) use($instance){
             $t = (new StringClass($item))->splitBy(': ');

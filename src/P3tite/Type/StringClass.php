@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 /**
- * Class representing strings as instances
+ * Class representing strings as instances - wrapping PHP native functions to offer an OO API 
+ * E.g:
+ * <code>
+ *  (new StringClass('FOO'))->toLower()->upperFirst(); // Foo 
+ * </code>
  * 
  * @FIXME - always use mb_* functions WHERE applicable!!!!
  * 
@@ -27,6 +31,52 @@ class StringClass
         $this->content = $begin;
     }
 
+    public function concat(string $addition): self
+    {
+        $this->content .= $addition;
+        return $this;
+    }
+
+    public function prepend(string $begin): self
+    {
+        $this->content = $begin . $this->content;
+        return $this;
+    }
+
+
+    public function append(string $end): self
+    {
+        $this->content = $this->content . $end;
+        return $this;
+    }
+
+    public function trim(string $characters = " \n\r\t\v\x00"): self
+    {
+        $this->content = trim($this->content, $characters);
+        return $this;
+    }
+
+    public function save(): self
+    {
+        $this->before = $this->content;
+        return $this;
+    }
+
+    public function getSaved(): string
+    {
+        return $this->before;
+    }
+
+    public function rollback(): self
+    {
+        $this->content = $this->before;
+        return $this;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
+    }
 
     public function clone(): self
     {
@@ -60,6 +110,21 @@ class StringClass
         return mb_str_split($this->content, $length, $encoding);
     }
 
+    public function contains(string $needle): bool
+    {
+        return str_contains($this->content, $needle);
+    }
+
+    public function starts(string $needle): bool
+    {
+        return str_starts_with($this->content, $needle);
+    }
+
+    public function ends(string $needle): bool
+    {
+        return str_ends_with($this->content, $needle);
+    }
+
     public function position(string $needle, int $offset = 0, bool $caseSensitive = true): int|false
     {
         return ($caseSensitive)
@@ -74,11 +139,22 @@ class StringClass
 
     // operates on bytes NOT characters 
     // @see https://www.php.net/manual/de/function.mb-strcut.php
-    public function cut (int $start, ?int $length = null,?string $encoding = null): self
+    public function cut(int $start, ?int $length = null, ?string $encoding = null): self
     {
-        return new self(mb_strcut($this->content, $start, $length,$encoding));
+        return new self(mb_strcut($this->content, $start, $length, $encoding));
     }
-    
+
+    public function replace(string $search, string $replace): self
+    {
+        $this->content = str_replace($search, $replace, $this->content);
+        return $this;
+    }
+
+    public function replaceMultiple(array $search, array $replace): self
+    {
+        $this->content = str_replace($search, $replace, $this->content);
+        return $this;
+    }
 
     public function toLower(): self
     {
@@ -110,39 +186,7 @@ class StringClass
         return $this;
     }
 
-    public function concat(string $addition): self
-    {
-        $this->content .= $addition;
-        return $this;
-    }
-
-    public function trim(string $characters = " \n\r\t\v\x00"): self
-    {
-        $this->content = trim($this->content , $characters);
-        return $this;
-    }
-
-    public function save(): self
-    {
-        $this->before = $this->content;
-        return $this;
-    }
-
-    public function getSaved(): string
-    {
-        return $this->before;
-    }
-
-    public function rollback(): self
-    {
-        $this->content = $this->before;
-        return $this;
-    }
-
-    public function getContent(): string
-    {
-        return $this->content;
-    }
+   
 
     public function pad(int $length, string $padString = " ", $padType = \STR_PAD_RIGHT): self
     {
@@ -152,7 +196,7 @@ class StringClass
 
     public function padBoth(int $length, string $padString = " "): self
     {
-       return  $this->pad($length, $padString, \STR_PAD_BOTH);
+        return  $this->pad($length, $padString, \STR_PAD_BOTH);
     }
 
     public function padLeft(int $length, string $padString = " "): self
@@ -169,5 +213,13 @@ class StringClass
     public function __toString(): string
     {
         return $this->content;
+    }
+
+
+    // functions operating on StringClass with Stringclass(es) as parameters
+
+    public function equals(StringClass $text): bool
+    {
+        return $this->content === $text->getContent();
     }
 }

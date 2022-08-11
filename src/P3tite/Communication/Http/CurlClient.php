@@ -4,6 +4,8 @@ declare(strict_types=1);
 /**
  * Class representing http response(s)
  * 
+ * @FIXME -> use P3tite\Communication\Http\Parser!!
+ * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
  * @package P3tite
@@ -95,18 +97,20 @@ class CurlClient implements ClientInterface
         }
 
         // build query param string from ArrayClass
-        $query = http_build_query($this->parameters->getContent());
+        
+        $queryString = http_build_query($this->parameters->getContent());
         switch ($this->method) {
+
             case 'GET':
             case 'DELETE':
                 // For GET and DELETE we send parameters within URI as query string
-                $this->uri .= '?' . $query;
+                $this->uri .= '?' . $queryString;
                 break;
 
             case 'POST':
             case 'PUT':
                 // For PUT and POST we send parameters in payload
-                $this->setCurlOption(CURLOPT_POSTFIELDS, $query);
+                $this->setCurlOption(CURLOPT_POSTFIELDS, $queryString);
                 break;
 
         }
@@ -137,9 +141,10 @@ class CurlClient implements ClientInterface
         return $this;
     }
 
-    public function setParameters(array $parameters)
+    public function setParameters(array $parameters): self
     {
         $this->parameters = new ArrayClass($parameters);
+        return $this;
     }
 
     public function getParameters(): ArrayClass

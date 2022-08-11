@@ -17,11 +17,11 @@ use P3tite\Type\ArrayClass;
 
 interface  ClientInterface
 {
-    public function __construct(string $uri = 'https://www.example.org/');
+    public function __construct(string $uri);
     public function process(string $uri, string $method = 'GET'): ClientInterface;
     public function getMethod(): string;
     public function setMethod(string $method): ClientInterface;
-    public function setParameters(array $parameters);
+    public function setParameters(array $parameters): ClientInterface;
     public function getParameters(): ArrayClass;
     public function setParameter(string $name, $value);
     public function getParameter(string $name);

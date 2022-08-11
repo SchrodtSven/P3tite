@@ -16,21 +16,21 @@ namespace P3tite\Mvc;
 use P3tite\Communication\Http\Request;
 use P3tite\Communication\Http\Response;
 use P3tite\Mvc\Router;
-use P3tite\Type\ArrayClass; 
+use P3tite\Type\ArrayClass;
 use P3tite\Application\Config;
 
 class FrontController
 {
 
 
-    
+
     private Router $router;
 
     public function __construct(private Request $request, private Response $response)
     {
         $this->router = new Router($this->request);
-       // var_dump($this->router);
-       $this->process();
+        // var_dump($this->router);
+        $this->process();
     }
 
     private function process()
@@ -39,11 +39,12 @@ class FrontController
             [
                 Config::APP_PREFIX,
                 $this->router->getModule(),
+                Config::MODULE_CTRLR_DIR_NAME,
                 $this->router->getController()
             ]
-        )) ->join('\\');
-            $method = $this->router->getAction();
-
-        (new $fullyQualifiedClass())->$method();
+        ))->join('\\');
+        $method = $this->router->getAction();
+        
+        (new $fullyQualifiedClass($this->request, $this->response))->$method();
     }
 }

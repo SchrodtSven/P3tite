@@ -17,8 +17,8 @@ namespace P3tite\Application;
  {
     public const APP_PREFIX = '\\P3tite\\Application';
 
-    public const MODULE_CTRLR_DIR_NAME = 'controllers';
+    public const MODULE_CTRLR_DIR_NAME = 'Controllers';
 
-    public const MODULE_CTRLR_DIR_NAME = 'views';
+    public const MODULE_VIEW_DIR_NAME = 'Views';
 
  }

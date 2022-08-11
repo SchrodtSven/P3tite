@@ -13,6 +13,9 @@ The main (current) goals are:
 - testing non- or even unusual design and architecture stuff
 - well tested parts COULD be taken into other of projects of mine  
 
+Note 2self():: Currently I am not sure, if I will add DocBlock comments to all methods|functions and property declarations
+- for now I am using commenting mainly for remembering myself :-X
+
 # Appendix
 
 ## Files
