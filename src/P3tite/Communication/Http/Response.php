@@ -29,7 +29,7 @@ class Response
 
     private int $statusCode;
 
-    protected function __construct()
+    public function __construct()
     {
         $this->parsedHeaders = new ArrayClass([]);
     }

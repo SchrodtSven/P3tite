@@ -26,6 +26,10 @@ class ArrayClass implements \Countable
         $this->content = $begin;
     }
 
+    public function join(string $glue): string
+    {
+        return implode($glue, $this->content);
+    }
 
     public function clone(): self
     {
@@ -42,7 +46,6 @@ class ArrayClass implements \Countable
         $this->content[$index] ?? null;
         return $this;
     }
-
 
     public function getByKey(string $key): mixed
     {
