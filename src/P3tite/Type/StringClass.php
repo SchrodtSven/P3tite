@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Class representing strings as instances - wrapping PHP native functions to offer an OO API 
+ * Class representing strings as instances - wrapping PHP native functions to offer an OO API for fluent interface chaining
  * E.g:
  * <code>
  *  (new StringClass('FOO'))->toLower()->upperFirst(); // Foo 
@@ -21,9 +21,9 @@ namespace P3tite\Type;
 
 class StringClass
 {
-    private string $content = '';
+    protected string $content = '';
 
-    private string $before = '';
+    protected string $before = '';
 
 
     public function __construct(string $begin = '')
@@ -105,6 +105,12 @@ class StringClass
         return $tmp;
     }
 
+    public function quote(string $sign="'"): self
+    {
+        $this->append($sign)->prepend($sign);
+        return $this;
+    }
+
     public function split(int $length = 1, ?string $encoding = null): array
     {
         return mb_str_split($this->content, $length, $encoding);
@@ -184,9 +190,7 @@ class StringClass
     {
         $this->content = ucwords($this->content);
         return $this;
-    }
-
-   
+    }   
 
     public function pad(int $length, string $padString = " ", $padType = \STR_PAD_RIGHT): self
     {
@@ -209,17 +213,41 @@ class StringClass
         return $this->pad($length, $padString, \STR_PAD_RIGHT);
     }
 
-
     public function __toString(): string
     {
         return $this->content;
     }
 
+    public function rot13(): string 
+    {
+        return str_rot13($this->content);
+    }
 
     // functions operating on StringClass with Stringclass(es) as parameters
 
     public function equals(StringClass $text): bool
     {
         return $this->content === $text->getContent();
+    }
+
+    public function notEquals(StringClass $text): bool
+    {
+        return $this->content !== $text->getContent();
+    }
+
+    public function plus (StringClass $addition): self
+    {
+        $this->concat($addition->getContent());
+        return $this;
+    }
+
+    public function convertTo(string $targetClass = 'GenericBuilder'): mixed
+    {
+        switch ($targetClass) {
+
+            case 'GenericBuilder':
+                return new \P3tite\Code\GenericBuilder($this->getContent());
+                break;
+        }
     }
 }

@@ -2,3 +2,6 @@
 .phpunit.result.cache
 tmp/
 code_grube.php
+vendor/
+1
+MOCK_DATA.json

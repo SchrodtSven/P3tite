@@ -3,8 +3,8 @@
 declare(strict_types=1);
 /**
  * Class representing array (integer based indices, so called 'list' or associative 'map|hash|hashmap') as instances
- *  
- * @TODO - implement \Iterator 
+ *   
+ * @TODO push, pop etc. multiple [] && class!! (import?)
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
@@ -14,8 +14,10 @@ declare(strict_types=1);
  */
 
 namespace P3tite\Type;
+use P3tite\Type\StringClass;
+use P3tite\Type\Operational\ArrayFilter;
 
-class ArrayClass implements \Countable
+class ArrayClass implements \Countable, \Iterator 
 {
     protected array $content = [];
 
@@ -26,9 +28,9 @@ class ArrayClass implements \Countable
         $this->content = $begin;
     }
 
-    public function join(string $glue): string
+    public function join(string $glue): StringClass
     {
-        return implode($glue, $this->content);
+        return new StringClass(implode($glue, $this->content));
     }
 
     public function clone(): self
@@ -117,10 +119,82 @@ class ArrayClass implements \Countable
         return $this;
     }
     
+
+    /**
+     * @TODO adding diferent sorting modes
+     */
+    public function sort(bool $ignoreCase = true): self
+    {
+        if($ignoreCase) {
+            natcasesort($this->content);
+        } else {
+            natsort($this->content);
+        }
+        return $this;
+    }
+
+    public function removeDuplicates(int $mode = \SORT_REGULAR): self
+    {
+        $this->content = array_unique($this->content, $mode);
+        return $this;
+    }
+
     public function walk(callable $callback)
     {
         $tmp = $this->getContent();
         array_walk($tmp, $callback);
         $this->content = $tmp;
+    }
+
+    public function getFilter(): ArrayFilter
+    {
+        return new ArrayFilter($this);
+    }
+
+    // The following functions implement interface \Iterator making it possible
+    // to iterate container objects with foreach
+
+    /**
+     * Resetting pointer to first array element
+     */
+    public function rewind() : void
+    {
+        reset($this->content);
+    }
+
+    /**
+     * Getting current element
+     *
+     */
+    public function current(): mixed
+    {
+        return current($this->content);
+    }
+
+    /**
+     * Getting key of current element
+     * @return mixed
+     */
+    public function key() : mixed
+    {
+        return key($this->content);
+    }
+
+    /**
+     * @return mixed|void
+     */
+    public function next(): void
+    {
+         next($this->content);
+    }
+
+    /**
+     * Returning if current element is valid
+     *
+     * @return bool
+     */
+    public function valid() : bool
+    {
+        return ($this->current() !== false);
     }
 }

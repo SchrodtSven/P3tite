@@ -9,6 +9,6 @@ class Foo extends ActionController
     public function __call(string $name, array $arguments = [])
     {
         echo 'I am :' . __CLASS__ . ' -> ' . $name;
-        var_dump($this->getParameter('id'));
+        var_dump($this->getParameter('name'));
     }
 }

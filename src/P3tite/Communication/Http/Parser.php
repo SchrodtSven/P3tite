@@ -19,16 +19,16 @@ use P3tite\Type\StringClass;
 
 class Parser
 {
-    public function parseUri(string $uri, int $component = -1)
+    public function parseUri(string $uri, int $component = -1): mixed
     {
         return parse_url($uri,$component);
     }
 
-    public function getUriPart(string $uri, string $part): ?string
+    public function getUriPart(string $uri, string $part): ?StringClass
     {
         $tmp = $this->parseUri($uri);
         return (array_key_exists($part, $tmp)) 
-            ? $tmp[$part]
+            ? new StringClass($tmp[$part])
             : null;
     }
 
@@ -49,6 +49,16 @@ class Parser
     {
         mb_parse_str($queryString, $data);
         return new ArrayClass($data);
+    }
+
+    public function buildQueryStringNDT(array $data): string
+    {
+        return http_build_query($data);
+    }
+
+    private function buildQueryString(ArrayClass $data): StringClass
+    {
+        return new StringClass(http_build_query($data));
     }
     
 }

@@ -15,17 +15,14 @@ use PHPUnit\Framework\TestCase;
 
 class StringClassTest extends TestCase
 {
-
-    private const POPE = 666;
-
-
     public function testBasix(): void
     {
 
         $start = '[';
         $end = ']';
         $bar = '-Lorem_ipsum';
-
+        $foo = new StringClass($bar);
+        $this->assertInstanceOf('P3tite\Type\StringClass', $foo);
         foreach ($this->wordProvider() as $item) {
             $foo = new StringClass($item);
             $this->assertSame((string) $foo->concat($bar), $item . $bar);
@@ -35,6 +32,17 @@ class StringClassTest extends TestCase
             $this->assertSame((string) $foo->append($end), $item . $end);
             $foo = new StringClass($item);
             $this->assertSame((string) $foo->append($end)->prepend($start), $start . $item . $end);
+
+            $foo = new StringClass($item);
+            $foo->prepend($this->getRandomTrimCharacter())->append($this->getRandomTrimCharacter());
+            $this->assertSame($item, (string) $foo->trim());
+
+            $foo = new StringClass($item);
+            $foo->save();
+            $foo->toUpper();
+            $this->assertFalse((string) $foo === $item);
+            $this->assertSame($item, (string) $foo->getSaved());
+            $this->assertSame($item, $foo->rollback()->getContent());
         }
     }
 
@@ -53,6 +61,7 @@ class StringClassTest extends TestCase
         }
     }
 
+    // Fake data provider 
     public function wordProvider(): array
     {
         return [
@@ -66,6 +75,183 @@ class StringClassTest extends TestCase
             'unde', 'labore', 'aspernatur', 'qui', 'voluptatem', 'omnis', 'ipsa', 'consequatur,', 'doloremque', 'eos', 'qui', 'incidunt',
             'reprehenderit', 'nisi', 'nostrum', 'nulla', 'rem', 'magnam', 'ut', 'voluptate', 'illum', 'aut', 'ad', 'aliquam', 'corporis', 'vel',
             'non', 'aperiam,', 'dolor', 'inventore', 'error', 'ut', 'est,', 'suscipit', 'magni'
+        ];
+    }
+
+    public function getRandomTrimCharacter(): string
+    {
+        $to2Trimmed = [' ', "\n", "\r", "\t", "\v", "\x00"];
+        return $to2Trimmed[array_rand($to2Trimmed)];
+    }
+
+    /**
+     * @dataProvider upperCasedWordProvider
+     */
+    public function testUppercase(string $input, string $uppercased)
+    {
+        $foo = new StringClass($input);
+        $this->assertSame( (string) $foo->toUpper(), $uppercased);
+    }
+
+    /**
+     * @dataProvider upperCasedWordProvider
+     */
+    public function testLowercase(string $input, string $uppercased)
+    {
+        $foo = new StringClass($uppercased);
+        $this->assertSame( (string) $foo->toLower(), mb_strtolower($input));
+    }
+
+    /**
+     * @dataProvider upperCasedWordProvider
+     */
+    public function testLowerFirst(string $input, string $uppercased)
+    {
+        $foo = new StringClass($uppercased);
+        $this->assertSame( (string) $foo->toLower()->lowerFirst(), lcfirst(mb_strtolower($input)));
+    }
+
+    /**
+     * @dataProvider upperCasedWordProvider
+     */
+    public function testUpperFirst(string $input, string $uppercased)
+    {
+        $foo = new StringClass($uppercased);
+        $this->assertSame( (string) $foo->toLower()->upperFirst(), ucfirst(mb_strtolower($input)));
+    }
+
+    public function upperCasedWordProvider()
+    {
+        return [
+            ['illo', 'ILLO'],
+            ['modi', 'MODI'],
+            ['Quis', 'QUIS'],
+            ['velit,', 'VELIT,'],
+            ['quisquam', 'QUISQUAM'],
+            ['Nemo', 'NEMO'],
+            ['adipisci', 'ADIPISCI'],
+            ['quam', 'QUAM'],
+            ['voluptatem', 'VOLUPTATEM'],
+            ['ullam', 'ULLAM'],
+            ['ea', 'EA'],
+            ['quo', 'QUO'],
+            ['vitae', 'VITAE'],
+            ['Sed', 'SED'],
+            ['totam', 'TOTAM'],
+            ['sit', 'SIT'],
+            ['ipsum', 'IPSUM'],
+            ['Neque', 'NEQUE'],
+            ['nesciunt.', 'NESCIUNT.'],
+            ['veniam,', 'VENIAM,'],
+            ['aut', 'AUT'],
+            ['laboriosam,', 'LABORIOSAM,'],
+            ['esse', 'ESSE'],
+            ['exercitationem', 'EXERCITATIONEM'],
+            ['sed', 'SED'],
+            ['architecto', 'ARCHITECTO'],
+            ['quia', 'QUIA'],
+            ['amet,', 'AMET,'],
+            ['minima', 'MINIMA'],
+            ['et', 'ET'],
+            ['dolorem', 'DOLOREM'],
+            ['dolore', 'DOLORE'],
+            ['sequi', 'SEQUI'],
+            ['sit', 'SIT'],
+            ['ut', 'UT'],
+            ['eaque', 'EAQUE'],
+            ['ipsam', 'IPSAM'],
+            ['Ut', 'UT'],
+            ['beatae', 'BEATAE'],
+            ['fugit,', 'FUGIT,'],
+            ['quia', 'QUIA'],
+            ['quia', 'QUIA'],
+            ['enim', 'ENIM'],
+            ['ratione', 'RATIONE'],
+            ['veritatis', 'VERITATIS'],
+            ['explicabo.', 'EXPLICABO.'],
+            ['commodi', 'COMMODI'],
+            ['quaerat', 'QUAERAT'],
+            ['aliquid', 'ALIQUID'],
+            ['dolorem', 'DOLOREM'],
+            ['nihil', 'NIHIL'],
+            ['ex', 'EX'],
+            ['consequuntur', 'CONSEQUUNTUR'],
+            ['voluptatem', 'VOLUPTATEM'],
+            ['molestiae', 'MOLESTIAE'],
+            ['et', 'ET'],
+            ['sed', 'SED'],
+            ['fugiat', 'FUGIAT'],
+            ['consectetur,', 'CONSECTETUR,'],
+            ['voluptas', 'VOLUPTAS'],
+            ['in', 'IN'],
+            ['iste', 'ISTE'],
+            ['voluptas', 'VOLUPTAS'],
+            ['qui', 'QUI'],
+            ['eum', 'EUM'],
+            ['ab', 'AB'],
+            ['quis', 'QUIS'],
+            ['sunt', 'SUNT'],
+            ['autem', 'AUTEM'],
+            ['iure', 'IURE'],
+            ['tempora', 'TEMPORA'],
+            ['dicta', 'DICTA'],
+            ['pariatur?', 'PARIATUR?'],
+            ['quasi', 'QUASI'],
+            ['consequatur?', 'CONSEQUATUR?'],
+            ['odit', 'ODIT'],
+            ['ea', 'EA'],
+            ['eius', 'EIUS'],
+            ['natus', 'NATUS'],
+            ['dolores', 'DOLORES'],
+            ['vel', 'VEL'],
+            ['porro', 'PORRO'],
+            ['quia', 'QUIA'],
+            ['voluptatem.', 'VOLUPTATEM.'],
+            ['enim', 'ENIM'],
+            ['qui', 'QUI'],
+            ['eum', 'EUM'],
+            ['accusantium', 'ACCUSANTIUM'],
+            ['quae', 'QUAE'],
+            ['laudantium,', 'LAUDANTIUM,'],
+            ['velit', 'VELIT'],
+            ['sit', 'SIT'],
+            ['numquam', 'NUMQUAM'],
+            ['perspiciatis', 'PERSPICIATIS'],
+            ['unde', 'UNDE'],
+            ['labore', 'LABORE'],
+            ['aspernatur', 'ASPERNATUR'],
+            ['qui', 'QUI'],
+            ['voluptatem', 'VOLUPTATEM'],
+            ['omnis', 'OMNIS'],
+            ['ipsa', 'IPSA'],
+            ['consequatur,', 'CONSEQUATUR,'],
+            ['doloremque', 'DOLOREMQUE'],
+            ['eos', 'EOS'],
+            ['qui', 'QUI'],
+            ['incidunt', 'INCIDUNT'],
+            ['reprehenderit', 'REPREHENDERIT'],
+            ['nisi', 'NISI'],
+            ['nostrum', 'NOSTRUM'],
+            ['nulla', 'NULLA'],
+            ['rem', 'REM'],
+            ['magnam', 'MAGNAM'],
+            ['ut', 'UT'],
+            ['voluptate', 'VOLUPTATE'],
+            ['illum', 'ILLUM'],
+            ['aut', 'AUT'],
+            ['ad', 'AD'],
+            ['aliquam', 'ALIQUAM'],
+            ['corporis', 'CORPORIS'],
+            ['vel', 'VEL'],
+            ['non', 'NON'],
+            ['aperiam,', 'APERIAM,'],
+            ['dolor', 'DOLOR'],
+            ['inventore', 'INVENTORE'],
+            ['error', 'ERROR'],
+            ['ut', 'UT'],
+            ['est,', 'EST,'],
+            ['suscipit', 'SUSCIPIT'],
+            ['magni', 'MAGNI']
         ];
     }
 }

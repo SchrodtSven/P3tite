@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Managing template in PHP (alternative) syntax 
+ * Managing templates in PHP (alternative) syntax 
  * @see https://www.php.net/manual/de/control-structures.alternative-syntax.php
  * 
  * @author Sven Schrodt<sven@schrodt.club>
