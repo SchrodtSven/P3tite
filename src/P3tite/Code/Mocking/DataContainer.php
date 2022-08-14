@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Class offering access to random, nut realistiv data for:
+ * Class offering access to random, but realistic data for:
  * 
  * - Mocking
  * - Unit testing

@@ -1,0 +1,57 @@
+Hank Pym	Ant-Man (First), Yellowjacket, Giant-Man
+Scott Lang	Ant-Man (Second)
+Eric O’Grady	Ant-Man (Third)
+Henry Philip “Hank” McCoy	Beast
+T’Challa	Black Panther
+Natasha Romanova	Black Widow
+Eric Brooks	Blade
+Bucky Barnes	Bucky, The Winter Soldier, Captain America (Second)
+Nathan Summers	Cable
+Steve Rogers	Captain America (First)
+Carol Danvers	Captain Marvel
+Piotr “Peter” Nikolaievitch Rasputin	Colossus
+Scott Summers	Cyclops
+Matt Murdock	Daredevil
+Wade Wilson	Deadpool
+Steven Strange	Doctor Strange
+Johnny Blaze	Ghost Rider (First)
+Robbie Reyes	Ghost Rider (Fourth)
+Danny Ketch	Ghost Rider (Second)
+Alejandra	Ghost Rider (Third)
+Clint Barton	Hawkeye
+Robert “Bobby” Louis Drake	Iceman
+Sue Storm	Invisible Woman
+Danny Rand	Iron Fist
+Tony Stark	Iron Man
+Illyana Rasputin	Magik
+Marc Spector	Moon Knight
+Reed Richards	Mr Fantastic
+Kamala Khan	Ms Marvel (Fourth)
+Kurt Wagner	Nightcrawler
+Richard Rider	Nova (First)
+Sam Alexander	Nova (Second)
+Luke Cage	Powerman
+Charles Francis Xavier	Professor X
+Elizabeth “Betsy” Braddock	Psylocke
+Thaddeus E. Ross	Red Hulk
+Wanda Maximoff	Scarlet Witch
+Kitty Pride	Shadowcat
+Jennifer “Jen” Walters	She-Hulk
+Norrin Radd	Silver Surfer
+Peter Parker	Spider-Man
+Miles Morales	Spider-Man (Ultimate)
+Jessica Drew	Spider-Woman
+Doreen Green	Squirrel Girl
+Peter Quill	Star-Lord
+Ororo Munroe	Storm
+Namor	Sub-Mariner
+Sam Wilson	The Flacon, Captain America (Third)
+Bruce Banner	The Hulk (First)
+Amadeus Cho	The Hulk (Second)
+Johnny Storm	The Human Torch
+Frank Castle	The Punisher
+Ben Grim	The Thing
+Emma Frost	The White Queen
+James Rhodes	War Machine, Iron Patriot (Second)
+James “Logan” Howlett	Wolverine (First)
+Laura Kinney	X-23, Wolverine (Second)

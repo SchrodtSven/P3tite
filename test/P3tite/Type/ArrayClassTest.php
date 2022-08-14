@@ -16,20 +16,31 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayClassTest extends TestCase
 {
-    public function testBasix   (): void
+    public function testBasix(): void
     {
-           $foo = new ArrayClass($this->wordProvider());
-            
-            $this->assertInstanceOf('P3tite\Type\ArrayClass', $foo);
-            $this->assertTrue(is_int(count($foo)));
-            $this->assertTrue(count($foo) === count($this->wordProvider()));
-       
+        $foo = new ArrayClass($this->wordProvider());
+
+        $this->assertInstanceOf('P3tite\Type\ArrayClass', $foo);
+        $this->assertTrue(is_int(count($foo)));
+        $this->assertTrue(count($foo) === count($this->wordProvider()));
+        $this->assertTrue(is_iterable($foo));
     }
 
-    public function testUniquing()
+    public function testBasicOperations(): void
+    {
+        $foo = new ArrayClass(['Peter Parker']);
+        $foo->push('Tony Stark');
+
+        $this->assertTrue(count($foo)===2);
+        $this->assertTrue($foo->get(0) === 'Peter Parker');
+        $this->assertTrue($foo->get(1) === 'Tony Stark');
+        $this->assertTrue(is_iterable($foo));
+    }
+
+
+    public function testUniquing(): void
     {
         $foo = new ArrayClass(
-
             [
                 'Alpha',
                 'Beta',
@@ -41,7 +52,10 @@ class ArrayClassTest extends TestCase
         );
         $foo->removeDuplicates();
         $this->assertTrue(count($foo) === 4);
-
+        $this->assertTrue($foo->get(0) === 'Alpha');
+        $this->assertTrue($foo->get(1) === 'Beta');
+        $this->assertTrue($foo->get(3) === 'Omicron Basic');
+        $this->assertTrue($foo->get(4) === 'Turbo Pascal');
     }
 
     // Fake data provider 
@@ -60,6 +74,4 @@ class ArrayClassTest extends TestCase
             'non', 'aperiam,', 'dolor', 'inventore', 'error', 'ut', 'est,', 'suscipit', 'magni'
         ];
     }
-
-    
 }
