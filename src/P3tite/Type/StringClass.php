@@ -5,7 +5,9 @@ declare(strict_types=1);
  * Class representing strings as instances - wrapping PHP native functions to offer an OO API for fluent interface chaining
  * E.g:
  * <code>
- *  (new StringClass('FOO'))->toLower()->upperFirst(); // Foo 
+ *  echo (new StringClass('FOO'))->toLower()->upperFirst(); // Foo 
+ * 
+ *  echo (new StringClass('Peter Porker'))->concat('is Spider-Ham')->toUpper(); // PETER PORKER IS SPIDER-HAM 
  * </code>
  * 
  * @FIXME - always use mb_* functions WHERE applicable!!!!
@@ -19,7 +21,10 @@ declare(strict_types=1);
 
 namespace P3tite\Type;
 
-class StringClass
+use P3tite\Data\Symbol;
+use P3tite\Type\ArrayClass;
+
+class StringClass implements \Stringable
 {
     protected string $content = '';
 
@@ -105,15 +110,28 @@ class StringClass
         return $tmp;
     }
 
-    public function quote(string $sign="'"): self
+    public function split(int $length = 1, ?string $encoding = null): ArrayClass
+    {
+        return new ArrayClass(mb_str_split($this->content, $length, $encoding));
+    }
+
+
+    public function quote(string $sign = "'"): self
     {
         $this->append($sign)->prepend($sign);
         return $this;
     }
 
-    public function split(int $length = 1, ?string $encoding = null): array
+    public function quoteTypographic($mode = 'US'): self
     {
-        return mb_str_split($this->content, $length, $encoding);
+        switch ($mode) {
+            case 'US':
+            default:
+                $start = Symbol::QUOTATION_MARK_US_PRIMARY_LEFT;
+                $end = Symbol::QUOTATION_MARK_US_PRIMARY_RIGHT;
+                break;
+        }
+        return $this->prepend($start)->append($end);
     }
 
     public function contains(string $needle): bool
@@ -190,7 +208,7 @@ class StringClass
     {
         $this->content = ucwords($this->content);
         return $this;
-    }   
+    }
 
     public function pad(int $length, string $padString = " ", $padType = \STR_PAD_RIGHT): self
     {
@@ -218,7 +236,7 @@ class StringClass
         return $this->content;
     }
 
-    public function rot13(): string 
+    public function rot13(): string
     {
         return str_rot13($this->content);
     }
@@ -235,18 +253,18 @@ class StringClass
         return $this->content !== $text->getContent();
     }
 
-    public function plus (StringClass $addition): self
+    public function plus(StringClass $addition): self
     {
         $this->concat($addition->getContent());
         return $this;
     }
 
-    public function convertTo(string $targetClass = 'GenericBuilder'): mixed
+    public function convertTo(string $targetClass = 'GenericCodePart'): mixed
     {
         switch ($targetClass) {
 
-            case 'GenericBuilder':
-                return new \P3tite\Code\GenericBuilder($this->getContent());
+            case 'GenericCodePart':
+                return new \P3tite\Code\GenericPart($this->getContent());
                 break;
         }
     }

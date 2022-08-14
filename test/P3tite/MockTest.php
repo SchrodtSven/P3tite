@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @since 2022-08-11
  */
 
-use P3tite\Code\GenericBuilder;
+use P3tite\Code\GenericPart;
 use P3tite\Type\ArrayClass;
 use P3tite\Type\StringClass;
 

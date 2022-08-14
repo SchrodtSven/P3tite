@@ -13,7 +13,7 @@ declare(strict_types=1);
 use P3tite\Type\StringClass;
 use PHPUnit\Framework\TestCase;
 
-class StringClassTest extends TestCase
+class StringClassTest extends TestCase 
 {
     public function testBasix(): void
     {
@@ -46,6 +46,22 @@ class StringClassTest extends TestCase
         }
     }
 
+
+    /**
+     * @todo -> use dataProvider and change signature (string $a, string $b)
+     */
+    public function testRollback(): void
+    {
+        $a = 'Dr. Henry Pym ';
+        $b = 'was Yellowjacket';
+        $foo = new StringClass($a);
+        $foo->save();
+        $foo->concat($b);
+        $this->assertSame((string) $foo, $a . $b);
+        $foo->rollback();
+        $this->assertSame((string) $foo, $a);
+
+    }
 
     public function testCasting(): void
     {

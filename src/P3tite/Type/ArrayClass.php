@@ -3,6 +3,10 @@
 declare(strict_types=1);
 /**
  * Class representing array (integer based indices, so called 'list' or associative 'map|hash|hashmap') as instances
+ * including: 
+ * 
+ * - accessing objects as arrays
+ * 
  *   
  * @TODO push, pop etc. multiple [] && class!! (import?)
  * 
@@ -14,10 +18,11 @@ declare(strict_types=1);
  */
 
 namespace P3tite\Type;
+
 use P3tite\Type\StringClass;
 use P3tite\Type\Operational\ArrayFilter;
 
-class ArrayClass implements \Countable, \Iterator 
+class ArrayClass implements \Countable, \Iterator, \ArrayAccess
 {
     protected array $content = [];
 
@@ -62,13 +67,13 @@ class ArrayClass implements \Countable, \Iterator
 
     public function unset(int $index): self
     {
-        if(array_key_exists($index, $this->content)) {
-            unset ($this->content[$index]);
+        if (array_key_exists($index, $this->content)) {
+            unset($this->content[$index]);
         }
         return $this;
     }
 
-    
+
     public function save(): self
     {
         $this->before = $this->content;
@@ -96,13 +101,18 @@ class ArrayClass implements \Countable, \Iterator
         return count($this->content);
     }
 
+    public function empty(): bool
+    {
+        return (count($this->content) === 0) ? true : false;
+    }
+
     public function push(mixed $value): self
-    {   
-        array_push($this-> content, $value);
+    {
+        array_push($this->content, $value);
         return $this;
     }
 
-    
+
     public function pop(): mixed
     {
         return array_pop($this->content);
@@ -118,14 +128,14 @@ class ArrayClass implements \Countable, \Iterator
         array_unshift($this->content, $value);
         return $this;
     }
-    
+
 
     /**
      * @TODO adding diferent sorting modes
      */
     public function sort(bool $ignoreCase = true): self
     {
-        if($ignoreCase) {
+        if ($ignoreCase) {
             natcasesort($this->content);
         } else {
             natsort($this->content);
@@ -151,13 +161,20 @@ class ArrayClass implements \Countable, \Iterator
         return new ArrayFilter($this);
     }
 
+
+    public function __isset(mixed $index): bool
+    {
+    
+        return isset($this->content[$index]);
+    }
+
     // The following functions implement interface \Iterator making it possible
     // to iterate container objects with foreach
 
     /**
      * Resetting pointer to first array element
      */
-    public function rewind() : void
+    public function rewind(): void
     {
         reset($this->content);
     }
@@ -175,7 +192,7 @@ class ArrayClass implements \Countable, \Iterator
      * Getting key of current element
      * @return mixed
      */
-    public function key() : mixed
+    public function key(): mixed
     {
         return key($this->content);
     }
@@ -185,7 +202,7 @@ class ArrayClass implements \Countable, \Iterator
      */
     public function next(): void
     {
-         next($this->content);
+        next($this->content);
     }
 
     /**
@@ -193,8 +210,38 @@ class ArrayClass implements \Countable, \Iterator
      *
      * @return bool
      */
-    public function valid() : bool
+    public function valid(): bool
     {
         return ($this->current() !== false);
     }
+
+    // The following functions implement interface \ArrayAccess
+    //  to provide accessing objects as arrays
+
+
+    public function offsetGet($offset): mixed
+    {
+        return $this->content[$offset] ?? null;
+    }
+
+    public function offsetSet($offset, $value): void
+    {
+        if (is_null($offset)) {
+            $this->content[] = $value;
+        } else {
+            $this->content[$offset] = $value;
+        }
+    }
+
+    public function offsetExists($offset): bool
+    {
+        return isset($this->content[$offset]);
+    }
+
+    public function offsetUnset($offset): void
+    {
+        unset($this->content[$offset]);
+    }
+
+    
 }

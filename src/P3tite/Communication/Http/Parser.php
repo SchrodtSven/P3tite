@@ -21,13 +21,13 @@ class Parser
 {
     public function parseUri(string $uri, int $component = -1): mixed
     {
-        return parse_url($uri,$component);
+        return parse_url($uri, $component);
     }
 
     public function getUriPart(string $uri, string $part): ?StringClass
     {
         $tmp = $this->parseUri($uri);
-        return (array_key_exists($part, $tmp)) 
+        return (array_key_exists($part, $tmp))
             ? new StringClass($tmp[$part])
             : null;
     }
@@ -40,12 +40,12 @@ class Parser
      * @param string $message
      * @return array
      */
-    public function splitMessage(string $message) : ArrayClass
+    public function splitMessage(string $message): ArrayClass
     {
         return (new StringClass($message))->splitBy(Protocol::MESSAGE_SEPARATOR);
     }
 
-    public function parseQueryString(string $queryString) : ArrayClass
+    public function parseQueryString(string $queryString): ArrayClass
     {
         mb_parse_str($queryString, $data);
         return new ArrayClass($data);
@@ -60,5 +60,4 @@ class Parser
     {
         return new StringClass(http_build_query($data));
     }
-    
 }

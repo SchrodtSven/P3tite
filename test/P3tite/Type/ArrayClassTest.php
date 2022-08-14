@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Unit testing Foo 
+ * Unit testing ArrayClass 
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
@@ -35,6 +35,21 @@ class ArrayClassTest extends TestCase
         $this->assertTrue($foo->get(0) === 'Peter Parker');
         $this->assertTrue($foo->get(1) === 'Tony Stark');
         $this->assertTrue(is_iterable($foo));
+        
+        $foo->push('Susan Storm');
+
+        $this->assertTrue($foo->shift() === 'Peter Parker');
+        $this->assertTrue($foo->pop() === 'Susan Storm');
+        $this->assertTrue(count($foo) ===1);
+
+
+        $this->assertTrue($foo[0] ===  'Tony Stark');
+        $this->assertTrue($foo->pop() === 'Tony Stark');
+        $this->assertTrue(count($foo) === 0);
+        
+        $this->assertTrue($foo->empty());
+        
+
     }
 
 
@@ -50,6 +65,7 @@ class ArrayClassTest extends TestCase
                 'Beta'
             ]
         );
+        $this->assertTrue(count($foo) === 6);
         $foo->removeDuplicates();
         $this->assertTrue(count($foo) === 4);
         $this->assertTrue($foo->get(0) === 'Alpha');

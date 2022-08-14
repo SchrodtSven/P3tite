@@ -15,7 +15,7 @@ namespace P3tite\Code;
 
 use P3tite\Type\StringClass;
 
-class GenericBuilder extends StringClass
+class GenericPart extends StringClass
 {
     /*
     * THE BRACKETS USED BY C, IN AMERICAN ENGLISH:

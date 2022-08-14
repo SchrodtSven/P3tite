@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Translating http uris to (module &&) controller && action 
+ * Translating http uris (“open API”) to executable code [(module &&) controller && action] (“internal API”)
  * 
  * @TODO adding rule sets for static routing etc..
  * 
@@ -13,7 +13,7 @@ declare(strict_types=1);
  * @package P3tite
  * @version 0.1
  * @since 2022-08-09
- */
+ */ 
 
 namespace P3tite\Mvc;
 

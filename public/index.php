@@ -21,5 +21,7 @@ use P3tite\Communication\Http\Request;
 use P3tite\Mvc\FrontController;
 
 
+var_dump($_SERVER);die;
 new FrontController(new Request(), new Response());
+
 
