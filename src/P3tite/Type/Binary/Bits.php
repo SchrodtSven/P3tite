@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 /**
- * Abstract action controller class
- * 
+ * Class representing an n bit wide data structure 
+ *  
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
  * @package P3tite

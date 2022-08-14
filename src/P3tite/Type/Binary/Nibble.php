@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 /**
- * Abstract action controller class
+ * Class representing a 4 bit wide 'half' byte 
+ * 
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite

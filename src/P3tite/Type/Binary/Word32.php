@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Abstract action controller class
+ * Class representing a 32 bit wide word 
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
