@@ -43,7 +43,7 @@ class Bits
         $this->setCurrentValue($value);
     }
 
-    public function getCurrentValue()
+    public function getCurrentValue(): int
     {
         return $this->currentValue;
     }

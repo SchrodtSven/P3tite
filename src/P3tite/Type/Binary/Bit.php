@@ -23,7 +23,7 @@ class Bit
 
     public const FALSE = '0';
 
-    public function __construct(bool $value=false)
+    public function __construct(bool $value = false)
     {
         $this->value = $value;
     }
@@ -39,9 +39,8 @@ class Bit
         return ($this->value) ? self::TRUE : self::FALSE;
     }
 
-    public static function f(bool $value)
+    public function getCurrentValue(): bool
     {
-        return new self($value);
+        return $this->value;
     }
-
 }
