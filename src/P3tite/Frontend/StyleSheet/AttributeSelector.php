@@ -83,9 +83,9 @@ class AttributeSelector
      * @param string $attribute
      * @return string
      */
-    public function has(string $attribute): string
+    public function has(string $attribute): StringClass
     {
-        return sprintf(self::SELECTOR_PATTERN_HAS_ATTRIBUTE, $attribute);
+        return new StringClass(sprintf(self::SELECTOR_PATTERN_HAS_ATTRIBUTE, $attribute));
     }
 
     /**
@@ -94,9 +94,9 @@ class AttributeSelector
      * @param string $value
      * @return string
      */
-    public function equals(string $attribute, string $value): string
+    public function equals(string $attribute, string $value): StringClass
     {
-        return sprintf(self::SELECTOR_PATTERN_ATTR_EQ_VALUE, $attribute, $value);
+        return new StringClass(sprintf(self::SELECTOR_PATTERN_ATTR_EQ_VALUE, $attribute, $value));
     }
 
     /**
@@ -106,9 +106,9 @@ class AttributeSelector
      * @param string $value
      * @return string
      */
-    public function contains(string $attribute, string $value): string
+    public function contains(string $attribute, string $value): StringClass
     {
-        return sprintf(self::SELECTOR_PATTERN_ATTR_CONTAINS_VALUE, $attribute, $value);
+        return new StringClass(sprintf(self::SELECTOR_PATTERN_ATTR_CONTAINS_VALUE, $attribute, $value));
     }
 
     /**
@@ -118,9 +118,9 @@ class AttributeSelector
      * @param string $value
      * @return string
      */
-    public function begins(string $attribute, string $value): string
+    public function begins(string $attribute, string $value): StringClass
     {
-        return sprintf(self::SELECTOR_PATTERN_ATTR_VALUE_BEGINS, $attribute, $value);
+        return new StringClass(sprintf(self::SELECTOR_PATTERN_ATTR_VALUE_BEGINS, $attribute, $value));
     }
 
     /**
@@ -130,9 +130,9 @@ class AttributeSelector
      * @param string $value
      * @return string
      */
-    public function ends(string $attribute, string $value): string
+    public function ends(string $attribute, string $value): StringClass
     {
-        return sprintf(self::SELECTOR_PATTERN_ATTR_VALUE_ENDS, $attribute, $value);
+        return new StringClass(sprintf(self::SELECTOR_PATTERN_ATTR_VALUE_ENDS, $attribute, $value));
     }
 
     /**
@@ -143,9 +143,9 @@ class AttributeSelector
      * @param string $value
      * @return string
      */
-    public function generic(string $attribute, string $operator, string $value): string
+    public function generic(string $attribute, string $operator, string $value): StringClass
     {
-        return sprintf(self::SELECTOR_PATTERN_GENERIC, $attribute, $value);
+        return new StringClass(sprintf(self::SELECTOR_PATTERN_GENERIC, $attribute, $value));
     }
 
 }

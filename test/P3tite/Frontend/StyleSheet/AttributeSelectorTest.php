@@ -23,6 +23,7 @@ class AttributeSelectorTest extends TestCase
     {
         $this->selector = new AttributeSelector();
     }
+
     /**
      * @dataProvider getDataForTestAttributeSelectorHas
      *
@@ -33,7 +34,7 @@ class AttributeSelectorTest extends TestCase
     public function testAttributeSelectorHas(string $a, string $b): void
     {
         $this->assertSame(
-            $this->selector->has($a),
+            (string) $this->selector->has($a),
             $b
         );
     }
@@ -49,7 +50,7 @@ class AttributeSelectorTest extends TestCase
     public function testAttributeSelectorEquals(string $a, string $b, string $c): void
     {
         $this->assertSame(
-            $this->selector->equals($a, $b),
+            (string) $this->selector->equals($a, $b),
             $c
         );
     }
@@ -65,7 +66,7 @@ class AttributeSelectorTest extends TestCase
     public function testAttributeSelectorContains(string $a, string $b, string $c): void
     {
         $this->assertSame(
-            $this->selector->contains($a, $b),
+            (string) $this->selector->contains($a, $b),
             $c
         );
     }
@@ -83,7 +84,7 @@ class AttributeSelectorTest extends TestCase
 
 
         $this->assertSame(
-            $this->selector->begins($a, $b),
+            (string) $this->selector->begins($a, $b),
             $c
         );
     }
@@ -99,7 +100,7 @@ class AttributeSelectorTest extends TestCase
     public function testAttributeSelectorEnds(string $a, string $b, string $c): void
     {
         $this->assertSame(
-            $this->selector->ends($a, $b),
+            (string) $this->selector->ends($a, $b),
             $c
         );
     }
@@ -117,7 +118,7 @@ class AttributeSelectorTest extends TestCase
     public function NotestAttributeSelectorGeneric(string $a, string $b, string $c, string $d): void
     {
         $this->assertSame(
-            $this->selector->generic($a, $b, $c),
+            (string) $this->selector->generic($a, $b, $c),
             $d
         );
     }
