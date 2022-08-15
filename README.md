@@ -4,7 +4,7 @@ Very tiny web application framework (PHP 8.1+)
 ## Disclaimer / motivation 
 
 This framework is *not intended to be used in production, nor to be interoperable with other frameworks, libraries etc. for now*.
-It is a kind of POC and mainly PHP 8.1+ playground for me. It is not intended to be used without thinking in PROD systems.
+It is a kind of POC and mainly PHP 8.1+ playground for me. 
 
 The main (current) goals are: 
 
@@ -15,6 +15,7 @@ The main (current) goals are:
 
 Note 2self():: Currently I am not sure, if I will add DocBlock comments to all methods|functions and property declarations
 - for now I am using commenting mainly for remembering myself :-X
+- we *always* use project specific data types instead of PHP native scalars for *now* 
 
 # Appendix
 
@@ -34,9 +35,21 @@ P3tite
 │       ├── Application
 │       │   ├── Admin
 │       │   ├── Api
-│       │   └── App
+│       │   ├── App
+│       │   │   ├── controllers
+│       │   │   │   └── Foo.php
+│       │   │   └── views
+│       │   └── Config.php
 │       ├── Autoload.php
 │       ├── Cache
+│       ├── Code
+│       │   ├── GenericPart.php
+│       │   └── Mocking
+│       │       ├── DataContainer.php
+│       │       └── raw_data
+│       │           ├── MOCK_DATA.json
+│       │           ├── heroes_dc.txt
+│       │           └── heroes_marvel.txt
 │       ├── Communication
 │       │   ├── Http
 │       │   │   ├── ClientInterface.php
@@ -50,13 +63,36 @@ P3tite
 │       ├── Console
 │       ├── Core
 │       │   └── Foo.php
+│       ├── Data
+│       │   └── Symbol.php
 │       ├── Entity
+│       │   └── Hero.php
+│       ├── Frontend
+│       │   ├── EcmaScript
+│       │   ├── Html
+│       │   │   └── Element.php
+│       │   └── StyleSheet
+│       │       └── Declaration.php
 │       ├── Mvc
+│       │   ├── ActionController.php
 │       │   ├── FrontController.php
+│       │   ├── PhpTplParser.php
 │       │   └── Router.php
 │       ├── Persistence
 │       └── Type
 │           ├── ArrayClass.php
+│           ├── Binary
+│           │   ├── Bit.php
+│           │   ├── Bits.php
+│           │   ├── Byte.php
+│           │   ├── Crumb.php
+│           │   ├── Nibble.php
+│           │   ├── README.md
+│           │   ├── Word16.php
+│           │   └── Word32.php
+│           ├── Operational
+│           │   ├── ArrayFilter.php
+│           │   └── StringFilter.php
 │           └── StringClass.php
 ├── test
 │   └── P3tite
@@ -64,7 +100,17 @@ P3tite
 │       ├── Communication
 │       ├── Core
 │       │   └── FooTest.php
+│       ├── DanglingTest.php
+│       ├── Frontend
+│       │   ├── EcmaScript
+│       │   ├── Html
+│       │   └── StyleSheet
+│       ├── MockTest.php
 │       ├── Mvc
 │       └── Type
-
+│           ├── ArrayClassTest.php
+│           ├── Binary
+│           │   ├── BitTest.php
+│           │   └── BitsTest.php
+│           └── StringClassTest.php
 </pre>

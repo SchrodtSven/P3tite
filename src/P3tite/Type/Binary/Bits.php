@@ -103,14 +103,5 @@ class Bits
         return new self($this->currentValue ^ $operand->currentValue);
     }
 
-    /**
-     * Factory method
-     *
-     * @param string $content
-     * @return Bits
-     */
-    public static function f(int $value, int $length = 32): Bits
-    {
-        return new static($value, $length);
-    }
+    
 }
