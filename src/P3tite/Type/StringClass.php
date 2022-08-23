@@ -258,7 +258,8 @@ class StringClass implements \Stringable
         $this->concat($addition->getContent());
         return $this;
     }
-
+    
+    //additional stuff
     public function convertTo(string $targetClass = 'GenericCodePart'): mixed
     {
         switch ($targetClass) {
@@ -267,5 +268,11 @@ class StringClass implements \Stringable
                 return new \P3tite\Code\GenericPart($this->getContent());
                 break;
         }
+    }
+
+    public function wrapWords(int $width = 80, string $break = "\n"): self
+    {
+        $this->content = wordwrap($this->content, $width, $break);
+        return $this;
     }
 }

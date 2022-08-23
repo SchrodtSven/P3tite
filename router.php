@@ -13,21 +13,9 @@ declare(strict_types=1);
  * @since 2022-08-09
  */
 
-/*
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-if (file_exists($_SERVER['DOCUMENT_ROOT'] . $path)) {
-    return false;
-} else {
-    $_SERVER['SCRIPT_NAME'] = 'index.php';
-    require_once 'public/index.php';
-}
-*/
-
-
-if (!file_exists($_SERVER['DOCUMENT_ROOT'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))) {
-    $_SERVER['SCRIPT_NAME'] = 'index.php';
-    require_once 'public/index.php';
+if (!file_exists($_SERVER['DOCUMENT_ROOT'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))) { // if requested resource does not exist in file system:
+    $_SERVER['SCRIPT_NAME'] = 'index.php'; // setting up current script name in super global 
+    require_once 'public/index.php'; // route to index.php
 } else {
     return false;
 }

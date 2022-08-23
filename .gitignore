@@ -7,3 +7,4 @@ vendor/
 MOCK_DATA.json
 files.txt
 composer.lock
+cloc

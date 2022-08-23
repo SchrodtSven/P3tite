@@ -16,6 +16,8 @@ use P3tite\Type\ArrayClass;
 use P3tite\Type\StringClass;
 
 use PHPUnit\Framework\TestCase;
+use P3tite\Code\Mocking\RandomData;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class MockTest extends TestCase
 {
@@ -24,17 +26,13 @@ class MockTest extends TestCase
 
     public function testJsonParing()
     {
-        $firstNameMale = new ArrayClass();
-        $firstNameFemale = new ArrayClass();
-        $firstNames = new ArrayClass();
-        $dta = json_decode(file_get_contents('MOCK_DATA.json'));
-        for ($i = 0; $i < count($dta); $i++) {
-           // echo $dta[$i]->gender . ' : : ' . $dta[$i]->firstName . PHP_EOL;
-            $firstNames->push($dta[$i]->firstName);
-            
+        $parsed = new ArrayClass();
+        $data = new ArrayClass(json_decode(file_get_contents('MOCK_DATA.json')));
+        $this->assertTrue(2 === 1 + 1);
+        foreach ($data as $item) {
+            $parsed->push((new StringClass($item->catchPhrase))->quote());
         }
-        $firstNames->sort();
-        var_dump($firstNames);
-        $this->assertTrue(is_string($dta[0]->lastName));
+
+        var_dump($parsed->join(', ')->prepend("\n\n"))->append("\n\n");
     }
 }

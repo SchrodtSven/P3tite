@@ -1,0 +1,19 @@
+PHPUnit 9.5.10 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.1.9
+Configuration: /Users/svenschrodt/projects/P3tite/phpunit.xml
+
+E                                                                   1 / 1 (100%)    private ArrayClass $id;
+
+
+Time: 00:00.005, Memory: 24.28 MB
+
+There was 1 error:
+
+1) DanglingTest::testHeroes
+TypeError: str_replace(): Argument #3 ($subject) must be of type array|string, int given
+
+/Users/svenschrodt/projects/P3tite/test/P3tite/DanglingTest.php:34
+
+ERRORS!
+Tests: 1, Assertions: 1, Errors: 1.

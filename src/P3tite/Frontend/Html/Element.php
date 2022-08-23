@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 /**
- * Class representing an n bit wide data structure 
- *  
+ * Class representing HTML element(s)
+ * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
  * @package P3tite
@@ -20,12 +20,14 @@ use \DOMDocument;
 use \DOMException;
 use \DomNode;
 use \DOMText;
+use P3tite\Type\StringClass;
+use P3tite\Type\ArrayClass;
 
-class Element implements \Stringable
+class Element
 {
 
     /**
-     * Flag, for HTML source formatting
+     * Flag, for HTML source formating
      * @var boolean
      */
     protected bool $beautify = true;
@@ -102,7 +104,7 @@ class Element implements \Stringable
     /**
      * Returning string representation of Element
      * (internally using: DomNode)
-     * @FIXME!!!
+     *
      * @return string
      */
     public function __toString(): string
@@ -123,7 +125,7 @@ class Element implements \Stringable
      * @param string $name
      * @return Element
      */
-    public function setName(string $name): Element
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;
@@ -141,7 +143,7 @@ class Element implements \Stringable
      * @param DOMDocument $document
      * @return Element
      */
-    public function setDocument(DOMDocument $document): Element
+    public function setDocument(DOMDocument $document): self
     {
         $this->document = $document;
         return $this;
@@ -159,7 +161,7 @@ class Element implements \Stringable
      * @param DOMElement $element
      * @return Element
      */
-    public function setElement(DOMElement $element): Element
+    public function setElement(DOMElement $element): self
     {
         $this->element = $element;
         return $this;
@@ -177,7 +179,7 @@ class Element implements \Stringable
      * @param string $value
      * @return Element
      */
-    public function setAttribute(string $name, string $value): Element
+    public function setAttribute(string $name, string $value): self
     {
         $this->attributes[$name] = $value;
         $this->element->setAttribute($name, $value);
@@ -189,9 +191,8 @@ class Element implements \Stringable
      *
      * @param array $attribs
      * @return Element
-     * @FIXME -> refactor!!!
      */
-    public function setAttributes(array $attribs): Element
+    public function setAttributes(array $attribs): self
     {
 
         // if we do have attributes, we will give them to the current element
@@ -231,7 +232,7 @@ class Element implements \Stringable
      * @param mixed $node
      *v
      */
-    public function appendChild(mixed $node): Element
+    public function appendChild(mixed $node): self
     {
         $node = $this->ensureDomNode($node);
         $node = $this->document->importNode($node, true);
@@ -245,7 +246,7 @@ class Element implements \Stringable
      * @param array $nodeList
      * @return Element
      */
-    public function appendChildren(array $nodeList): Element
+    public function appendChildren(array $nodeList): self
     {
         foreach ($nodeList as $node) {
             $this->appendChild($node);
@@ -259,7 +260,7 @@ class Element implements \Stringable
      * @param string $name
      * @return Element
      */
-    public function addClass(string $name): Element
+    public function addClass(string $name): self
     {
         if (in_array($name, $this->class)) {
             return $this;
@@ -277,7 +278,7 @@ class Element implements \Stringable
      * @param string $name
      * @return Element
      */
-    public function removeClass(string $name): Element
+    public function removeClass(string $name): self
     {
         if (($name = array_search($name, $this->class)) !== false) {
             unset($this->class[$name]);
@@ -304,7 +305,7 @@ class Element implements \Stringable
      * @param string $name
      * @return Element
      */
-    public function setId(string $name): Element
+    public function setId(string $name): self
     {
         $this->id = $name;
         // Setting new attribute value for id to internal \DOMElement

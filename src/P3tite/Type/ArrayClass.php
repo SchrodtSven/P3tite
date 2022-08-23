@@ -168,6 +168,11 @@ class ArrayClass implements \Countable, \Iterator, \ArrayAccess
         return isset($this->content[$index]);
     }
 
+    public function  getRandomElement(): mixed
+    {
+        return $this->content[array_rand($this->content)];
+    }
+
     // The following functions implement interface \Iterator making it possible
     // to iterate container objects with foreach
 

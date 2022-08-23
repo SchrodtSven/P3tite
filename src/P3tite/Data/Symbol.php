@@ -27,5 +27,7 @@ namespace P3tite\Data;
 
     public const QUOTATION_MARK_US_PRIMARY_RIGHT ='”';
 
+    public const TAB = "\t";
+
     //“…”
  }

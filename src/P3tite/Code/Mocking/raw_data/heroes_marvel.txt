@@ -45,7 +45,7 @@ Doreen Green	Squirrel Girl
 Peter Quill	Star-Lord
 Ororo Munroe	Storm
 Namor	Sub-Mariner
-Sam Wilson	The Flacon, Captain America (Third)
+Sam Wilson	The Falcon, Captain America (Third)
 Bruce Banner	The Hulk (First)
 Amadeus Cho	The Hulk (Second)
 Johnny Storm	The Human Torch
@@ -55,3 +55,4 @@ Emma Frost	The White Queen
 James Rhodes	War Machine, Iron Patriot (Second)
 James “Logan” Howlett	Wolverine (First)
 Laura Kinney	X-23, Wolverine (Second)
+Clint Barton	Giant man (second)
