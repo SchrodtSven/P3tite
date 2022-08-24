@@ -29,10 +29,6 @@ class MockTest extends TestCase
         $parsed = new ArrayClass();
         $data = new ArrayClass(json_decode(file_get_contents('MOCK_DATA.json')));
         $this->assertTrue(2 === 1 + 1);
-        foreach ($data as $item) {
-            $parsed->push((new StringClass($item->catchPhrase))->quote());
-        }
-
-        var_dump($parsed->join(', ')->prepend("\n\n"))->append("\n\n");
+        
     }
 }

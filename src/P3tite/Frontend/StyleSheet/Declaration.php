@@ -5,7 +5,9 @@ declare(strict_types=1);
  * Declaration - class representing a single CSS declaration <property>:<value> - e.g:
  *
  *  <code>
- * font-family: Comic sans, Gargoyle
+ *  font-family: Comic sans, Gargoyle;
+ * 
+ *  background: pink url(style_assets/foo.svg) right 2.3em top 0.666em no-repeat;
  *  </code>
  * 
  * @author Sven Schrodt<sven@schrodt.club>
@@ -82,6 +84,6 @@ class Declaration implements \Stringable
      */
     public function __toString(): string
     {
-        return sprintf('%s:%s', (string) $this->property, (string) $this->value);
+        return sprintf('%s: %s', (string) $this->property, (string) $this->value);
     }
 }

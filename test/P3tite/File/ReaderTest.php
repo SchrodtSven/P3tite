@@ -39,15 +39,5 @@ class ReaderTest extends TestCase
         }
 
 
-
-       // var_dump($elements);die;
-        foreach ($elements as $element) {
-            $list->push($element->quote());
-        }
-        $fooo23 = $elements->join(', ')->prepend('[')->append(']');
-        echo $fooo23->wrapWords(60);
-        //$this->assertTrue($line->length() > strlen($foo[0]));
-        //$this->assertTrue($line->length() > strlen($foo[0]));
-
     }
 }

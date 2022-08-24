@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * AClass representing a 2 bit wide data structure 
+ * Class representing a 2 bit wide data structure 
  * 
  * 
  * @author Sven Schrodt<sven@schrodt.club>
@@ -22,6 +22,5 @@ class Crumb extends Bits
     public function __construct(int $value)
     {
         parent::__construct($value, $this->length);
-
     }
 }

@@ -114,3 +114,11 @@ P3tite
 │           │   └── BitsTest.php
 │           └── StringClassTest.php
 </pre>
+
+## Development environment - just 4 the record
+
+ - Box: iMac21,2; Apple M1
+ - OS: Darwin Kernel Version 21.6.0/RELEASE_ARM64_T8101 arm64
+ - IDE: Visual Studio Code; version: 1.70.2 (Universal)
+ - PHP: PHP 8.1.9 (NTS); Zend Engine v4.1.9 with Zend OPcache v8.1.9
+ - Sqlite: version 3.39.2

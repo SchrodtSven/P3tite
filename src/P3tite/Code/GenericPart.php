@@ -17,12 +17,7 @@ use P3tite\Type\StringClass;
 
 class GenericPart extends StringClass
 {
-    /*
-    * THE BRACKETS USED BY C, IN AMERICAN ENGLISH:
     
-    */
-
-
     /**
      * Constants defining different embracing styles:
      * ( AND ) ARE THE LEFT AND RIGHT PARENTHESES, SINGULAR PARENTHESIS.

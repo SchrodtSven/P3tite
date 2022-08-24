@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- *AttributeSelector - class representing attribute selector(s)
+ * AttributeSelector - class representing attribute selector(s)
  *
  *  <code>
  * font-family: Comic sans, Gargoyle

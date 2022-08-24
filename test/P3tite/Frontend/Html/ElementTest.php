@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- *AttributeSelector - class representing attribute selector(s)
+ * ElementTest
  *
  *  <code>
  * font-family: Comic sans, Gargoyle
@@ -26,6 +26,7 @@ class ElementTest extends TestCase
 {
 
     /**
+     * @FIXME - use dataProvider fooProvider
      * @dataProvider fooProvider
      */
     public function testBasix(string $elementName, string $content, string $expectedOutput)
@@ -33,12 +34,17 @@ class ElementTest extends TestCase
         $foo = new Element($elementName, $content);
         $startTag = "<$elementName>";
         $endTag = "</$elementName>";
+        $clssName = 'superHeroKillerWhoIsNotAGod';
+        $anotherClssName = 'curious_cats';
         
         $this->assertInstanceOf('P3tite\Frontend\Html\Element' ,$foo);
         $this->assertSame((string) $foo,  $expectedOutput);
 
-        $foo->addClass('superHeroKillerWhoIsNotAGod');
-        $this->assertSame((string) $foo, '<h1 class="superHeroKillerWhoIsNotAGod">Foo</h1>');
+        $foo->addClass($clssName);
+        $this->assertSame((string) $foo, '<h1 class="'. $clssName .'">Foo</h1>');
+
+        $foo->addClass($anotherClssName);
+        $this->assertSame((string) $foo, '<h1 class="'. $clssName . ' ' . $anotherClssName . '">Foo</h1>');
     }
 
     public function fooProvider(): array

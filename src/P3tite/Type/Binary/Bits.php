@@ -15,25 +15,25 @@ namespace P3tite\Type\Binary;
 
 use P3tite\Type\StringClass;
 
-class Bits
+class Bits implements \Stringable
 {
 
-    private int $lsb = 0;
+    protected int $lsb = 0;
 
-    private int $msb;
+    protected int $msb;
 
-    private int $length;
+    protected int $length;
 
-    private int $minValue = 0;
+    protected int $minValue = 0;
 
-    private int $maxValue;
+    protected int $maxValue;
 
-    private int $currentValue;
+    protected int $currentValue;
 
     public const EXPONENT = 2;
 
 
-    private const ERROR_BETWEEN_CONSTRAINT = '$value MUST be between %d and %d, when using bit length: %d, %d given';
+    protected const ERROR_BETWEEN_CONSTRAINT = '$value MUST be between %d and %d, when using bit length: %d, %d given';
 
     public function __construct(int $value, int $length = 32)
     {
@@ -68,7 +68,7 @@ class Bits
 
     public function getBinaryLiteral(): StringClass
     {
-        return (new StringClass(sprintf('%b', $this->currentValue)))->pad($this->msb + 1, '0');
+        return (new StringClass(sprintf('%b', $this->currentValue)))->padLeft($this->length, '0');
     }
 
     public function __toString(): string
@@ -104,4 +104,87 @@ class Bits
     }
 
     
+
+    /**
+     * Get the value of maxValue
+     *
+     * @return int
+     */
+    public function getMaxValue(): int
+    {
+        return $this->maxValue;
+    }
+
+    /**
+     * Set the value of maxValue
+     *
+     * @param int $maxValue
+     *
+     * @return self
+     */
+    public function setMaxValue(int $maxValue): self
+    {
+        $this->maxValue = $maxValue;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of minValue
+     *
+     * @return int
+     */
+    public function getMinValue(): int
+    {
+        return $this->minValue;
+    }
+
+    /**
+     * Set the value of minValue
+     *
+     * @param int $minValue
+     *
+     * @return self
+     */
+    public function setMinValue(int $minValue): self
+    {
+        $this->minValue = $minValue;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the value of lsb
+     *
+     * @param int $lsb
+     *
+     * @return self
+     */
+    public function setLsb(int $lsb): self
+    {
+        $this->lsb = $lsb;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of msb
+     *
+     * @return int
+     */
+    public function getMsb(): int
+    {
+        return $this->msb;
+    }
+
+    /**
+     * Get the value of length
+     *
+     * @return int
+     */
+    public function getLength(): int
+    {
+        return $this->length;
+    }
 }

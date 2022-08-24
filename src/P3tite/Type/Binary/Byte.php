@@ -17,11 +17,10 @@ namespace P3tite\Type\Binary;
 
 class Byte extends Bits
 {
-    private int $length = 8;
+    protected int $length = 8;
 
     public function __construct(int $value)
     {
         parent::__construct($value, $this->length);
-
     }
 }

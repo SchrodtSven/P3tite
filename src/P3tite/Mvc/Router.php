@@ -42,6 +42,13 @@ class Router
         $this->parseUri($request);
     }
 
+    /**
+     * 
+     * @FIXME: 
+     *  - edge cases
+     *  - add unit tests
+     *  - add FE tests
+     */
     private function parseUri(Request $request)
     {
         $uri = new StringClass($request->getRequestUri(false));
