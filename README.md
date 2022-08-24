@@ -3,7 +3,7 @@ Very tiny web application framework (PHP 8.1+)
 
 ## Disclaimer / motivation 
 
-This framework is *not intended to be used in production, nor to be interoperable with other frameworks, libraries etc. **for now** *.
+This framework is _not_ *intended to be used in production, nor to be interoperable with other frameworks, libraries etc.* **for now** *.
 It is a kind of POC and mainly PHP 8.1+ playground for me. 
 
 The main (current) goals are: 
