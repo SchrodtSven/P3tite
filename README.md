@@ -3,7 +3,7 @@ Very tiny web application framework (PHP 8.1+)
 
 ## Disclaimer / motivation 
 
-This framework is *not intended to be used in production, nor to be interoperable with other frameworks, libraries etc. for now*.
+This framework is *not intended to be used in production, nor to be interoperable with other frameworks, libraries etc. **for now** *.
 It is a kind of POC and mainly PHP 8.1+ playground for me. 
 
 The main (current) goals are: 
@@ -13,9 +13,19 @@ The main (current) goals are:
 - testing non- or even unusual design and architecture stuff
 - well tested parts COULD be taken into other of projects of mine  
 
-Note 2self():: Currently I am not sure, if I will add DocBlock comments to all methods|functions and property declarations
+### Note::2self() : 
+- Currently I am not sure, if I will add DocBlock comments to all methods|functions and property declarations
 - for now I am using commenting mainly for remembering myself :-X
-- we *always* use project specific data types instead of PHP native scalars for *now* 
+- I *always* use project specific data types *here*, instead of PHP native scalars for *now* 
+
+## (Personal) Goals - targets to be reached with this project (for me)
+
+ - Basic MVC functionality
+ - Generic and language specific source code generation (from different data sources, e.g: RDBMs, flat files, http resources etc.)
+ - Abstraction of scalar (even bits) and compound data types as PHP objects, offering fluent interfaces for complex operations on data
+ - Offering client and server classes for basic and higher level network operations (raw sockets, tcp/udp, http ...) supporting legacy (v4) and current (v6) version of IP
+ - Profiling different algorithms and patterns
+ - having some nice hours and even fun  
 
 # Appendix
 
