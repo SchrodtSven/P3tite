@@ -73,6 +73,11 @@ class ArrayClass implements \Countable, \Iterator, \ArrayAccess
         return $this;
     }
 
+    public function getKeys(): self
+    {
+        return new ArrayClass(array_keys($this->content));
+    }
+
 
     public function save(): self
     {

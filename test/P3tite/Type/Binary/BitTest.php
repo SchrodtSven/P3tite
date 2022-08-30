@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * Dynamically modified file for testing currently written code
+ * Unit testing type Bit
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite

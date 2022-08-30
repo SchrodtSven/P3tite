@@ -17,7 +17,7 @@ namespace P3tite\Type\Binary;
 
 class Crumb extends Bits
 {
-    private int $length = 2;
+    protected int $length = 2;
 
     public function __construct(int $value)
     {

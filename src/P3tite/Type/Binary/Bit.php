@@ -17,7 +17,7 @@ namespace P3tite\Type\Binary;
 
 class Bit
 {
-    private $value = false;
+    private bool $value = false;
 
     public const TRUE = '1';
 
@@ -28,9 +28,10 @@ class Bit
         $this->value = $value;
     }
 
+    // !false is funny, caus' it's true;-)
     public function not()
     {
-        $this->value = ($this->value) ? false : true;
+        $this->value = !$this->value;
         return $this;
     }
 

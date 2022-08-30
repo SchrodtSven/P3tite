@@ -31,6 +31,7 @@ class Hero
         'alive',
         'dead',
         'unknown',
+        'schroedinger'
 
     ];
 
@@ -41,35 +42,38 @@ class Hero
         'kree',
         'skrull',
         'kryptonian',
-        'werewolf'
+        'werewolf',
+        'vampire',
+        'inhuman',
+        'mutant'
 
     ];
 
-    private StringClass $firstName = '';
-    private ArrayClass $midNames = '';
-    private StringClass $lastName = '';
-    private StringClass $gender = '';
+    private ?StringClass $firstName = null;
+    private ?ArrayClass $midNames = null;
+    private ?StringClass $lastName = null;
+    private ?StringClass $gender = null;
 
     /**
      * Hint: Amphiprion ocellaris is one species of clownfish. Many species of fish are endangered by overfishing
      */
-    private StringClass $species = '';
+    private ?StringClass $species = null;
 
-    private StringClass $secretIdenty = '';
+    private ?StringClass $secretIdenty = null;
 
-    private ArrayClass $aliases;
+    private ?ArrayClass $aliases = null;
 
-    private ArrayClass $superPowers;
+    private ?ArrayClass $superPowers = null;
 
-    private ArrayClass $powers;
+    private ?ArrayClass $powers = null;
 
-    private ArrayClass $famousWords;
+    private ?ArrayClass $famousWords = null;
 
-    private StringClass $famousLastWords = '';
+    private ?StringClass $famousLastWords = null;
 
-    private StringClass $status;
+    private ?StringClass $status = null;
 
-    private ArraClass $origin;
+    private ?ArrayClass $origin = null;
 
 
     
@@ -116,5 +120,10 @@ class Hero
         $this->midNames = $midNames;
 
         return $this;
+    }
+
+    public function addMidname(string $name)
+    {
+        $this->midNames->push(new StringClass($name));
     }
 }

@@ -35,6 +35,7 @@ The main (current) goals are:
 P3tite
 ├── LICENSE
 ├── README.md
+├── composer.json
 ├── make
 ├── phpunit.xml
 ├── public
@@ -48,6 +49,9 @@ P3tite
 │       │   ├── App
 │       │   │   ├── controllers
 │       │   │   │   └── Foo.php
+│       │   │   ├── data
+│       │   │   │   ├── data.db
+│       │   │   │   └── schema.sql
 │       │   │   └── views
 │       │   └── Config.php
 │       ├── Autoload.php
@@ -55,11 +59,15 @@ P3tite
 │       ├── Code
 │       │   ├── GenericPart.php
 │       │   └── Mocking
+│       │       ├── Data
 │       │       ├── DataContainer.php
+│       │       ├── RandomData.php
 │       │       └── raw_data
 │       │           ├── MOCK_DATA.json
 │       │           ├── heroes_dc.txt
-│       │           └── heroes_marvel.txt
+│       │           ├── heroes_marvel.txt
+│       │           ├── html5_elements.txt
+│       │           └── html5_global_attr.txt
 │       ├── Communication
 │       │   ├── Http
 │       │   │   ├── ClientInterface.php
@@ -77,11 +85,16 @@ P3tite
 │       │   └── Symbol.php
 │       ├── Entity
 │       │   └── Hero.php
+│       ├── File
+│       │   ├── FileException.php
+│       │   └── Reader.php
 │       ├── Frontend
 │       │   ├── EcmaScript
 │       │   ├── Html
-│       │   │   └── Element.php
+│       │   │   ├── Element.php
+│       │   │   └── General.php
 │       │   └── StyleSheet
+│       │       ├── AttributeSelector.php
 │       │       └── Declaration.php
 │       ├── Mvc
 │       │   ├── ActionController.php
@@ -89,6 +102,9 @@ P3tite
 │       │   ├── PhpTplParser.php
 │       │   └── Router.php
 │       ├── Persistence
+│       │   └── Driver
+│       │       ├── DriverInterface.php
+│       │       └── Sqlite.php
 │       └── Type
 │           ├── ArrayClass.php
 │           ├── Binary
@@ -111,24 +127,33 @@ P3tite
 │       ├── Core
 │       │   └── FooTest.php
 │       ├── DanglingTest.php
+│       ├── File
+│       │   └── ReaderTest.php
 │       ├── Frontend
 │       │   ├── EcmaScript
 │       │   ├── Html
+│       │   │   └── ElementTest.php
 │       │   └── StyleSheet
+│       │       └── AttributeSelectorTest.php
 │       ├── MockTest.php
 │       ├── Mvc
+│       ├── Persistence
+│       │   └── Driver
+│       │       └── SqliteTest.php
+│       ├── Test.php
 │       └── Type
 │           ├── ArrayClassTest.php
 │           ├── Binary
 │           │   ├── BitTest.php
-│           │   └── BitsTest.php
+│           │   ├── BitsTest.php
+│           │   ├── ByteTest.php
+│           │   └── CrumbTest.php
 │           └── StringClassTest.php
 </pre>
 
 ## Development environment - just 4 the record
 
- - Box: iMac21,2; Apple M1
- - OS: Darwin Kernel Version 21.6.0/RELEASE_ARM64_T8101 arm64
+ - Main box: iMac21,2; Apple M1; Darwin Kernel Version 21.6.0/RELEASE_ARM64_T8101 arm64
  - IDE: Visual Studio Code; version: 1.70.2 (Universal)
  - PHP: PHP 8.1.9 (NTS); Zend Engine v4.1.9 with Zend OPcache v8.1.9
  - Sqlite: version 3.39.2

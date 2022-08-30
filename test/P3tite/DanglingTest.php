@@ -16,22 +16,31 @@ use P3tite\Type\ArrayClass;
 use PHPUnit\Framework\TestCase;
 use P3tite\Code\Mocking\RandomData;
 use P3tite\Type\Binary\Byte;
+use P3tite\Data\DateTimeHelper;
+use P3tite\Code\Lang\Sql\DataType;
+use P3tite\Code\Lang\Sql\Attribute;
 
 class DanglingTest extends TestCase
 {
+    private const TAB = "\t";
+
     public function testHeroes()
     {
+
         echo PHP_EOL;
-       for($i=0;$i < 256;$i++) {
-        $foo = new Byte($i); 
-        echo (new StringClass((string) $foo))->quote()->prepend('[' . $i .', '. $i .', ' )->append('],');       
-        //if($i % 4 === 0) 
-        echo PHP_EOL;
-    }
-      
-       $bar = new Byte(1);
-      
-       $this->assertTrue($bar->getMaxValue() === 255);
-       $this->assertTrue($bar->getMinValue() === 0);
+       $bar = new \stdClass();
+        $foo = new DataType();
+        $desc = $foo->getTypes()['VARCHAR']->getDescription();
+        foreach($foo->getTypes()->getKeys() as $key) {
+            echo (new StringClass($key))->toLower()->quote();
+            echo ' => ';
+            echo (new StringClass($key))->quote();
+            echo ',';
+            echo PHP_EOL;
+        }
+        $this->assertInstanceOf('P3tite\Type\StringClass', $desc);
+
+        var_dump($foo->getTypeByKey('datetime'));
     }
 }
+//0000  

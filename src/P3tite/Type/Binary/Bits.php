@@ -71,12 +71,19 @@ class Bits implements \Stringable
         return (new StringClass(sprintf('%b', $this->currentValue)))->padLeft($this->length, '0');
     }
 
+
+    public function setBinaryLiteral(string $literal): self
+    {
+        $this->value = bindec($literal); 
+        return $this;
+    }
+
     public function __toString(): string
     {
         return $this->getBinaryLiteral()->getContent();
     }
 
-    public function not(): Bits
+    public function not(): self
     {
         $tmp = new StringClass(sprintf('%b', $this->getCurrentValue()));
         $parts = $tmp->split();
@@ -88,17 +95,17 @@ class Bits implements \Stringable
         return $this;
     }
 
-    public function and(Bits $operand): Bits
+    public function and(Bits $operand): self
     {
         return new self($this->currentValue & $operand->currentValue);
     }
 
-    public function or(Bits $operand): Bits
+    public function or(Bits $operand): self
     {
         return new self($this->currentValue | $operand->currentValue);
     }
 
-    public function xOr(Bits $operand): Bits
+    public function xOr(Bits $operand): self
     {
         return new self($this->currentValue ^ $operand->currentValue);
     }

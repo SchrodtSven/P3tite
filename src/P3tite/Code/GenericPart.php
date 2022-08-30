@@ -17,7 +17,7 @@ use P3tite\Type\StringClass;
 
 class GenericPart extends StringClass
 {
-    
+     
     /**
      * Constants defining different embracing styles:
      * ( AND ) ARE THE LEFT AND RIGHT PARENTHESES, SINGULAR PARENTHESIS.
