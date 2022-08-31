@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Class representing a single SQL attribute (“column”) 
+ * Class managing meta data for dql data types 
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
@@ -126,6 +126,12 @@ class DataType
         return $this;
     }
 
+    /**
+     * Getting Attribute instance for $key (case insensitive, if exists or null)
+     * @param string $key
+     * 
+     * @return Attribute
+     */
     public function getTypeByKey(string $key): ?Attribute
     {
         return ($this->types[$this->indices[strtolower($key)]]) ?? null;

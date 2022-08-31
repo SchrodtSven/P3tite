@@ -25,9 +25,16 @@ class DataTypeTest extends UnitTest
     public function testBasix()
     {
         $foo = new DataType();
+        $this->assertInstanceOf('P3tite\Type\ArrayClass', $foo->getTypes());
         foreach($foo->getTypes()->getKeys() as $item) {
-            $this->assertInstanceOf('P3tite\Code\Lang\Sql\Attribute', $foo->getTypeByKey($item));
+            $attr = $foo->getTypeByKey($item);
+            $this->assertInstanceOf('P3tite\Code\Lang\Sql\Attribute', $attr);
+            $this->assertInstanceOf('P3tite\Type\StringClass', $attr->getType());
+            $this->assertInstanceOf('P3tite\Type\StringClass', $attr->getDescription());
         }
+
+        $this->assertInstanceOf('P3tite\Code\Lang\Sql\DataType', $foo->setTypes(new ArrayClass()));
+        $this->assertTrue(count($foo->getTypes()) === 0);
 
     }
 }

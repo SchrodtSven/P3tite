@@ -15,22 +15,32 @@ declare(strict_types=1);
 
 namespace P3tite\Persistence\Driver;
 
+use P3tite\Type\ArrayClass;
+
 class Sqlite implements DriverInterface
 {
 
+    /**
+     * Internal instance of \PDO
+     */
     private ?\PDO $pdo = null;
 
+    /**
+     * Instance of last executed statement
+     */
     private ?\PDOStatement $lastStatement = null;
 
+    //@FIXME -> via Config
     public const PATH_2_FILE = 'src/P3tite/Application/App/data/data.db';
 
 
-    public function __construct(string $dsn = null)
+    public function __construct(string $dsn = null, bool $autoConnect = true)
     {
         if (is_null($dsn)) {
             $dsn = 'sqlite:' . self::PATH_2_FILE;
         }
-        $this->connect($dsn);
+        if ($autoConnect)
+            $this->connect($dsn);
     }
 
     public function connect(string $dsn): self
@@ -57,8 +67,10 @@ class Sqlite implements DriverInterface
         return $this->pdo;
     }
 
-    public function fetchAll(int $mode = \PDO::FETCH_CLASS, string $class = 'stdClass', ?array $constructorArgs = null)
+    public function fetchAll(int $mode = \PDO::FETCH_CLASS, string $class = 'stdClass', ?array $constructorArgs = null): ArrayClass
     {
-        return $this->lastStatement->fetchAll($mode, $class, $constructorArgs);
+        $foo =  $this->lastStatement->fetchAll($mode, $class, $constructorArgs);
+
+        return (is_null($foo))? new ArrayClass() : new ArrayClass($foo) ;
     }
 }

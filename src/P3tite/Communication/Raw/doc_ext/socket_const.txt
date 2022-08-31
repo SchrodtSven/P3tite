@@ -1,0 +1,5 @@
+    \SOCK_STREAM=> true, //full-duplex is ok
+    \SOCK_DGRAM => true, // datagrams connectionlessis ok
+    \SOCK_SEQPACKET    => true, //sequenced, reliable, two-way connection-based is ok
+    \SOCK_RAW    => true, // raw network protocol access is ok
+    \SOCK_RDM    => true, //reliable datagram layer without guaranteed ordering  is ok

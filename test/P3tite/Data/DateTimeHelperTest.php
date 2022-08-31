@@ -26,7 +26,7 @@ class DateTimeHelperTest extends TestCase
         $helper = new DateTimeHelper();
         $old = $helper->getDateFromTimeStamp(12345);
         $this->assertInstanceOf('DateTime', $old);
-        var_dump($old);
+        
 
 
         $new = $helper->getDateFromString('2022-08-24 10:23:42');

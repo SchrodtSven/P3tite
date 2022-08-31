@@ -19,28 +19,27 @@ use P3tite\Type\Binary\Byte;
 use P3tite\Data\DateTimeHelper;
 use P3tite\Code\Lang\Sql\DataType;
 use P3tite\Code\Lang\Sql\Attribute;
+use P3tite\Code\Mocking\CharacterGeneratorService;
 
 class DanglingTest extends TestCase
 {
     private const TAB = "\t";
+    private const EOL = "\r\n";
+    private int $min = 32;
+    private int $max = 126;
 
     public function testHeroes()
     {
+      $chargen = new CharacterGeneratorService();
+      $max = 25;
+      echo PHP_EOL;
+      for($i=0; $i<$max; $i++) {
+        echo  $chargen->getLine();
+        
+      }
 
-        echo PHP_EOL;
-       $bar = new \stdClass();
-        $foo = new DataType();
-        $desc = $foo->getTypes()['VARCHAR']->getDescription();
-        foreach($foo->getTypes()->getKeys() as $key) {
-            echo (new StringClass($key))->toLower()->quote();
-            echo ' => ';
-            echo (new StringClass($key))->quote();
-            echo ',';
-            echo PHP_EOL;
-        }
-        $this->assertInstanceOf('P3tite\Type\StringClass', $desc);
-
-        var_dump($foo->getTypeByKey('datetime'));
+      $this->assertTrue(2 === 1+1);
+      //die('FOO:: ' . $this->max  -$this->min);
     }
 }
 //0000  

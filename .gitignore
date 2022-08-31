@@ -8,3 +8,5 @@ MOCK_DATA.json
 files.txt
 composer.lock
 cloc
+cfg.php
+src/P3tite/Application/App/cfp.php

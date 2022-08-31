@@ -29,5 +29,8 @@ namespace P3tite\Data;
 
     public const TAB = "\t";
 
+    public const CRLF = "\r\n";
+    
+
     //“…”
  }

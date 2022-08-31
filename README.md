@@ -34,8 +34,12 @@ The main (current) goals are:
 <pre>
 P3tite
 ├── LICENSE
+├── MOCK_DATA.json
 ├── README.md
+├── Reader.php
 ├── composer.json
+├── composer.lock
+├── files.txt
 ├── make
 ├── phpunit.xml
 ├── public
@@ -58,10 +62,23 @@ P3tite
 │       ├── Cache
 │       ├── Code
 │       │   ├── GenericPart.php
+│       │   ├── Lang
+│       │   │   ├── Perl
+│       │   │   ├── Php
+│       │   │   ├── Python
+│       │   │   ├── Rust
+│       │   │   └── Sql
+│       │   │       ├── Attribute.php
+│       │   │       ├── DataType.php
+│       │   │       ├── Query.php
+│       │   │       ├── raw_data
+│       │   │       │   └── typespure.txt
+│       │   │       └── types.txt
 │       │   └── Mocking
 │       │       ├── Data
 │       │       ├── DataContainer.php
 │       │       ├── RandomData.php
+│       │       ├── RandomNumber.php
 │       │       └── raw_data
 │       │           ├── MOCK_DATA.json
 │       │           ├── heroes_dc.txt
@@ -80,10 +97,15 @@ P3tite
 │       │   └── Response.php
 │       ├── Console
 │       ├── Core
-│       │   └── Foo.php
+│       │   ├── Foo.php
+│       │   └── Testing
+│       │       ├── UnitTest.php
+│       │       └── UnitTestConfig.php
 │       ├── Data
+│       │   ├── DateTimeHelper.php
 │       │   └── Symbol.php
 │       ├── Entity
+│       │   ├── BasicEntity.php
 │       │   └── Hero.php
 │       ├── File
 │       │   ├── FileException.php
@@ -123,10 +145,23 @@ P3tite
 ├── test
 │   └── P3tite
 │       ├── Application
+│       ├── Code
+│       │   ├── Lang
+│       │   │   ├── Perl
+│       │   │   ├── Php
+│       │   │   ├── Python
+│       │   │   ├── Rust
+│       │   │   └── Sql
+│       │   │       └── DataTypeTest.php
+│       │   └── Mocking
 │       ├── Communication
 │       ├── Core
 │       │   └── FooTest.php
 │       ├── DanglingTest.php
+│       ├── Data
+│       │   └── DateTimeHelperTest.php
+│       ├── Entity
+│       │   └── BasicEntityTest.php
 │       ├── File
 │       │   └── ReaderTest.php
 │       ├── Frontend
@@ -149,6 +184,7 @@ P3tite
 │           │   ├── ByteTest.php
 │           │   └── CrumbTest.php
 │           └── StringClassTest.php
+
 </pre>
 
 ## Development environment - just 4 the record
