@@ -5,7 +5,7 @@ declare(strict_types=1);
  * Class representing general HTTP protocol
  * (methods, headers, other attributes etc.)
  *
- * 
+ * @FIXME use ArrayClass / StringClass
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
  * @package P3tite

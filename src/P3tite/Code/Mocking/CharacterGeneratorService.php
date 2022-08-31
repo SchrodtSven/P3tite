@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * Service implementing RFC 864 - Character Generator Protocol (CHARGEN) on application layer -> see P3tite\Communication\* for socket implementation
  * 
- * example output:
+ * sample output:
  *  
  * <code>
  * !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefgh
@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace P3tite\Code\Mocking;
 
 use P3tite\Type\ArrayClass;
+use P3tite\Type\StringClass;
 
 class CharacterGeneratorService
 {
@@ -37,24 +38,28 @@ class CharacterGeneratorService
 
     private int $windowSize = 72;
 
-    private int $udpPort = 19;
-
-    private int $tcpPort = 19;
 
     private static int $currentCodepoint = 33;
 
 
-    public function getLine(): string
+    public function getLine(): StringClass
     {
-        $line = '';
+        $line = new StringClass();
         $start = self::$currentCodepoint;
         for ($i = 0; $i < $this->windowSize; $i++) {
-            $line .= chr(self::$currentCodepoint);
-            //echo self::$currentCodepoint     . ' :: ' . chr(self::$currentCodepoint) . PHP_EOL;
-            $this->setNextCodepoint();      
+            $line->append(chr(self::$currentCodepoint));
+            $this->setNextCodepoint();
         }
-        self::$currentCodepoint = $start+1;
-        return $line . self::EOL;
+        self::$currentCodepoint = $start + 1;
+        return $line->append(self::EOL);
+    }
+
+    public function getFullCharacterLine(): StringClass
+    {
+        $line = new StringClass();
+        for ($i = $this->min; $i < $this->max + 1; $i++)
+            $line->append(chr($i));
+        return $line->append(self::EOL);
     }
 
     public function setNextCodepoint()
@@ -70,5 +75,3 @@ class CharacterGeneratorService
         }
     }
 }
-
-// Character Generator Protocol

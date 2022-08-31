@@ -20,26 +20,30 @@ use P3tite\Data\DateTimeHelper;
 use P3tite\Code\Lang\Sql\DataType;
 use P3tite\Code\Lang\Sql\Attribute;
 use P3tite\Code\Mocking\CharacterGeneratorService;
+use P3tite\Code\Lang\Sql\Query;
 
 class DanglingTest extends TestCase
 {
-    private const TAB = "\t";
-    private const EOL = "\r\n";
-    private int $min = 32;
-    private int $max = 126;
 
-    public function testHeroes()
-    {
-      $chargen = new CharacterGeneratorService();
-      $max = 25;
-      echo PHP_EOL;
-      for($i=0; $i<$max; $i++) {
-        echo  $chargen->getLine();
-        
-      }
 
-      $this->assertTrue(2 === 1+1);
-      //die('FOO:: ' . $this->max  -$this->min);
+  private const TAB = "\t";
+  private const EOL = "\r\n";
+  private int $min = 32;
+  private int $max = 126;
+
+  public function testHeroes()
+  {
+    // var_dump(Query::getConstants());
+    $foo = new CharacterGeneratorService();
+    echo $foo->getFullCharacterLine();
+    $chargen = new CharacterGeneratorService();
+    $max = 55;
+    echo PHP_EOL;
+    for ($i = 0; $i < $max; $i++) {
+      echo  $chargen->getLine();
     }
+    $this->assertTrue(2 === 1 + 1);
+    //die('FOO:: ' . $this->max  -$this->min);
+  }
 }
 //0000  
