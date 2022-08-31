@@ -24,13 +24,6 @@ require_once 'src/P3tite/Autoload.php';
 $start = '../P3tite';
 $it = new RecursiveDirectoryIterator($start);
 
-// Loop through files
-foreach (new RecursiveIteratorIterator($it) as $file) {
-    $foo = new StringClass((string) $file);
-    if (!$foo->starts('./vendor') && !$foo->starts('.git') && (string) $foo != '.' && (string) $foo != '..') {
-        echo $file . PHP_EOL;
-    }
-}
 
 
  //
