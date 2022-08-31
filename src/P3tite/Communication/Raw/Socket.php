@@ -5,7 +5,7 @@ declare(strict_types=1);
  * Base class for socket implementations (server and client)
  * 
  * @FIXME - use ArrayClass/StringClass
- * @see https://datatracker.ietf.org/doc/html/rfc864
+ * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
  * @package P3tite
@@ -92,7 +92,7 @@ class Socket
     protected int $maxConnections = \SOMAXCONN;
 
     /***
-     * Constant for ICMP is missing as native PHP constant
+     * Constant for ICMP (is missing as native PHP constant)
      */
     public const SOL_ICMP = 1;
 

@@ -18,21 +18,21 @@ use P3tite\Type\ArrayClass;
 interface  ClientInterface
 {
     public function __construct(string $uri);
-    public function process(string $uri, string $method = 'GET'): ClientInterface;
+    public function process(string $uri, string $method = 'GET'): self;
     public function getMethod(): string;
-    public function setMethod(string $method): ClientInterface;
-    public function setParameters(array $parameters): ClientInterface;
+    public function setMethod(string $method): self;
+    public function setParameters(array $parameters): self;
     public function getParameters(): ArrayClass;
     public function setParameter(string $name, $value);
     public function getParameter(string $name);
     public function getUri(): string;
-    public function setUri(string $uri): ClientInterface;
+    public function setUri(string $uri): self;
     public function getTtl(): int;
-    public function setTtl(int $ttl): ClientInterface;
+    public function setTtl(int $ttl): self;
     public function getResponse(): Response;
-    public function post(string $uri = ''): ClientInterface;
-    public function put(string $uri = ''): ClientInterface;
-    public function get(string $uri = ''): ClientInterface;
-    public function delete(string $uri = ''): ClientInterface;
+    public function post(string $uri = ''): self;
+    public function put(string $uri = ''): self;
+    public function get(string $uri = ''): self;
+    public function delete(string $uri = ''): self;
 
 }

@@ -18,6 +18,7 @@ namespace P3tite\Communication\Raw;
 class Client extends Socket
 {
 
+    private const FOO_ERROR = 666;
     public function connect()
     {
         $result = socket_connect($this->socket, $this->address, $this->port);
@@ -27,8 +28,10 @@ class Client extends Socket
                     SocketException::CONNECTION_TO_PORT_ERROR,
                     $this->address,
                     $this->port
-                )
+                ),
+                self::FOO_ERROR
             );
         }
     }
 }
+‚

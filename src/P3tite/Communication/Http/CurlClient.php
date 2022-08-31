@@ -135,7 +135,7 @@ class CurlClient implements ClientInterface
      * @param string $method
      * @return CurlClient
      */
-    public function setMethod(string $method): CurlClient
+    public function setMethod(string $method): self
     {
         $this->method = strtoupper($method);
         return $this;
@@ -168,7 +168,7 @@ class CurlClient implements ClientInterface
         return $this->uri;
     }
 
-    public function setUri(string $uri): CurlClient
+    public function setUri(string $uri): self
     {
         $this->uri = $uri;
         return $this;
@@ -181,7 +181,7 @@ class CurlClient implements ClientInterface
     }
 
   
-    public function setTtl(int $ttl): CurlClient
+    public function setTtl(int $ttl): self
     {
         $this->ttl = $ttl;
         return $this;
@@ -193,25 +193,25 @@ class CurlClient implements ClientInterface
         return $this->response;
     }
 
-    public function post(string $uri = ''): CurlClient
+    public function post(string $uri = ''): self
     {
         $this->process($uri, 'POST');
         return $this;
     }
 
-    public function put(string $uri = ''): CurlClient
+    public function put(string $uri = ''): self
     {
         $this->process($uri, 'PUT');
         return $this;
     }
 
-    public function get(string $uri = ''): CurlClient
+    public function get(string $uri = ''): self
     {
         $this->process($uri, 'GET');
         return $this;
     }
 
-    public function delete(string $uri = ''): CurlClient
+    public function delete(string $uri = ''): self
     {
         $this->process($uri, 'DELETE');
         return $this;

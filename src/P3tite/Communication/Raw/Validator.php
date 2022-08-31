@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 /**
+ * Validator class for socket programming
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P3tite
@@ -17,25 +18,25 @@ class Validator
 {
     public function isValidAddress(string $address)
     {
-        return (filter_var($address, FILTER_VALIDATE_IP) !== false);
+        return (filter_var($address, \FILTER_VALIDATE_IP) !== false);
     }
 
-    public function isValidPort(int $port)
+    public function isValidPort(int $port): bool
     {
         return $port >= 1 && $port <= 65535;
     }
 
-    public function checkProtocol(int $protocol)
+    public function checkProtocol(int $protocol): bool
     {
         return match ($protocol) {
-            Base::SOL_ICMP,     //  ICMP
-            \SOL_TCP,    // TCP will be ok
+            Socket::SOL_ICMP,     //  ICMP,
+            \SOL_TCP,    // TCP and
             \SOL_UDP => true, // UDP will be ok
             default => false // all others: not ok
         };
     }
 
-    public function checkDomain(int $domain)
+    public function checkDomain(int $domain): bool
     {
         return match ($domain) {
             \AF_INET,     // legacy IP (IPv4) will be ok
@@ -45,7 +46,7 @@ class Validator
         };
     }
 
-    public function checkType(int $type)
+    public function checkType(int $type): bool
     {
         return match ($type) {
             \SOCK_STREAM => true, //full-duplex is ok
