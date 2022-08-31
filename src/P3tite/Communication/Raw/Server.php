@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace P3tite\Communication\Raw;
 
 
-class Server extends Base
+class Server extends Socket
 {
 
   public function run()

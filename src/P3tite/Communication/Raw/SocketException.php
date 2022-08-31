@@ -25,10 +25,10 @@ class SocketException extends \ErrorException
 
     public const SOCKET_READ_ERROR = 'Error while reading from socket: ';
 
-    public const CONNECTION_TO_PORT_ERROR = 'The connection could npot be established: (%s:%s)';
+    public const CONNECTION_TO_PORT_ERROR = 'The connection to port could not be established: (%s:%s)';
 
     public function __construct(
-        string $message = '', int $code, int $severity = 1, ?string $filename = __FILE__, ?int $line = __LINE__, ?Throwable $previous = null
+        string $message = '', int $code, int $severity = 1, ?string $filename = __FILE__, ?int $line = __LINE__, ?\Throwable $previous = null
     )
     {
           parent::__construct($message, $code, $severity, $filename, $line, $previous);

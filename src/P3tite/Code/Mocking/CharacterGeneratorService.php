@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Service implementing RFC 864 - Character Generator Protocol (CHARGEN) 
+ * Service implementing RFC 864 - Character Generator Protocol (CHARGEN) on application layer -> see P3tite\Communication\* for socket implementation
  * 
  * example output:
  *  
@@ -59,7 +59,6 @@ class CharacterGeneratorService
 
     public function setNextCodepoint()
     {
-
         switch (true) {
             case $this->min <= self::$currentCodepoint && $this->max >= self::$currentCodepoint:
                 self::$currentCodepoint++;

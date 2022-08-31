@@ -12,10 +12,10 @@ declare(strict_types=1);
 
 
 namespace P3tite\Communication\Raw;
- 
 
 
-class Client extends Base
+
+class Client extends Socket
 {
 
     public function connect()
@@ -23,11 +23,12 @@ class Client extends Base
         $result = socket_connect($this->socket, $this->address, $this->port);
         if ($result === false) {
             throw new SocketException(
-                sprintf(SocketException::CONNECTION_TO_PORT_ERROR,
-                    $this->address, $this->port)
+                sprintf(
+                    SocketException::CONNECTION_TO_PORT_ERROR,
+                    $this->address,
+                    $this->port
+                )
             );
         }
     }
-
-
 }
