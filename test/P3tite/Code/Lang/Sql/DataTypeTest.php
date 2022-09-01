@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @link https://github.com/SchrodtSven/P3tite
  * @package P3tite
  * @version 0.1
- * @since 2022-08-12
+ * @since 2022-08-31
  */
 
 use P3tite\Core\Testing\UnitTest;

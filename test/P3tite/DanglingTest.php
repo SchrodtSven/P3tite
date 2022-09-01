@@ -33,15 +33,7 @@ class DanglingTest extends TestCase
 
   public function testHeroes()
   {
-    // var_dump(Query::getConstants());
-    $foo = new CharacterGeneratorService();
-    echo $foo->getFullCharacterLine();
-    $chargen = new CharacterGeneratorService();
-    $max = 55;
-    echo PHP_EOL;
-    for ($i = 0; $i < $max; $i++) {
-      echo  $chargen->getLine();
-    }
+   
     $this->assertTrue(2 === 1 + 1);
     //die('FOO:: ' . $this->max  -$this->min);
   }

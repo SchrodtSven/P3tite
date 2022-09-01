@@ -16,7 +16,8 @@ The main (current) goals are:
 ### Note::2self() : 
 - Currently I am not sure, if I will add DocBlock comments to all methods|functions and property declarations
 - for now I am using commenting mainly for remembering myself :-X
-- I *always* use project specific data types *here*, instead of PHP native scalars for *now* 
+- I *always* use project specific data types *here*, instead of PHP native scalars for *now* as class members - not necessarily in function signatures :-X
+
 
 ## (Personal) Goals - targets to be reached with this project (for me)
 

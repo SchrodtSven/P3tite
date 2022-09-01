@@ -30,28 +30,43 @@ class StringClass implements \Stringable
 
     protected string $before = '';
 
+    public const SPACE_MODE_NONE = 1;
+
+    public const SPACE_MODE_BEFORE = 2;
+
+    public const SPACE_MODE_AFTER = 4;
+
+    public const SPACE_MODE_BOTH = 8;
+
+
+
 
     public function __construct(string $begin = '')
     {
         $this->content = $begin;
     }
 
-    public function concat(string $addition): self
+    public function concat(mixed $addition): self
     {
-        $this->content .= $addition;
+        $this->content .= (string) $addition;
         return $this;
     }
 
-    public function prepend(string $begin): self
+    public function prepend(mixed $begin, int $spaceMode = self::SPACE_MODE_NONE): self
     {
-        $this->content = $begin . $this->content;
+        if ($spaceMode != self::SPACE_MODE_NONE)
+            $begin = $this->addSpace($begin);
+        $this->content = (string)  $begin . $this->content;
         return $this;
     }
 
 
-    public function append(string $end): self
+    public function append(mixed $end, int $spaceMode = self::SPACE_MODE_NONE): self
     {
-        $this->content = $this->content . $end;
+
+        if ($spaceMode != self::SPACE_MODE_NONE)
+            $end = $this->addSpace($end);
+        $this->content = (string) $this->content . $end;
         return $this;
     }
 
@@ -59,6 +74,24 @@ class StringClass implements \Stringable
     {
         $this->content = trim($this->content, $characters);
         return $this;
+    }
+
+    protected function addSpace(string $text, int $spaceMode = self::SPACE_MODE_BOTH)
+    {
+        switch ($spaceMode) {
+            case self::SPACE_MODE_BEFORE:
+                $text = ' ' . $text;
+                break;
+
+            case self::SPACE_MODE_AFTER:
+                $text .= ' ';
+                break;
+
+            case self::SPACE_MODE_BOTH:
+                $text = ' ' . $text . ' ';
+        }
+
+        return $text;
     }
 
     public function save(): self
@@ -109,6 +142,7 @@ class StringClass implements \Stringable
         }
         return $tmp;
     }
+
 
     public function split(int $length = 1, ?string $encoding = null): ArrayClass
     {
@@ -210,6 +244,12 @@ class StringClass implements \Stringable
         return $this;
     }
 
+    public function wrapWords(int $width = 80, string $break = PHP_EOL): self
+    {
+        $this->content = wordwrap($this->content, $width, $break);
+        return $this;
+    }
+
     public function pad(int $length, string $padString = " ", $padType = \STR_PAD_RIGHT): self
     {
         $this->content = str_pad($this->content, $length, $padString, $padType);
@@ -258,7 +298,7 @@ class StringClass implements \Stringable
         $this->concat($addition->getContent());
         return $this;
     }
-    
+
     //additional stuff
     public function convertTo(string $targetClass = 'GenericCodePart'): mixed
     {
@@ -268,11 +308,5 @@ class StringClass implements \Stringable
                 return new \P3tite\Code\GenericPart($this->getContent());
                 break;
         }
-    }
-
-    public function wrapWords(int $width = 80, string $break = "\n"): self
-    {
-        $this->content = wordwrap($this->content, $width, $break);
-        return $this;
     }
 }

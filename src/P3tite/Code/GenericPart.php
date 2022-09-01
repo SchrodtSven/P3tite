@@ -14,10 +14,11 @@ declare(strict_types=1);
 namespace P3tite\Code;
 
 use P3tite\Type\StringClass;
+use P3tite\Type\ArrayClass;
 
 class GenericPart extends StringClass
 {
-     
+
     /**
      * Constants defining different embracing styles:
      * ( AND ) ARE THE LEFT AND RIGHT PARENTHESES, SINGULAR PARENTHESIS.
@@ -73,8 +74,29 @@ class GenericPart extends StringClass
                 $end = self::RIGHT_PARENTHESIS;
                 break;
         }
-                
+
         $this->prepend($start)->append($end);
         return $this;
+    }
+
+    public function getAssignment(string $name, mixed $value, string $operator = ' = '): StringClass
+    {
+        $valueObject = new StringClass((string) $value);
+        if (!is_numeric($value))
+            $valueObject->quote();
+        return (new StringClass($name))
+            ->append($operator)
+            ->append($valueObject);
+    }
+
+    public function getAssignmentList(ArrayClass $data, string $glue=', ', string $operator = ' = '): self
+    {
+        $tmp = new ArrayClass();
+        $keys = $data->getKeys();
+        for($i=0; $i<count($data);$i++) {
+            $tmp->push($this->getAssignment($keys[$i], $data[$keys[$i]], $operator));
+        }
+
+        return $tmp->join($glue)->convertTo();
     }
 }

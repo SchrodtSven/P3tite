@@ -20,7 +20,7 @@ class QueryTest extends UnitTest
 {
     public function testBasix()
     {
-        $foo = new Query();
+        $foo = new Query('Foo');
         $numeric = array_keys($foo->getValidKeyword(true)->getContent());
         $alpha = array_keys($foo->getValidKeyword(false)->getContent());
 

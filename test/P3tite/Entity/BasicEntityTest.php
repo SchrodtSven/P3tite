@@ -15,7 +15,7 @@ use P3tite\Entity\BasicEntity;
 use P3tite\Type\StringClass;
 use P3tite\Type\ArrayClass;
 use P3tite\Core\Testing\UnitTest;
-use \DateTime;
+ 
  
 
 class BasicEntityTest extends UnitTest

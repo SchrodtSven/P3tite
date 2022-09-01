@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace P3tite\Entity;
 
+use DateTime;
 use P3tite\Type\StringClass;
 use P3tite\Type\ArrayClass;
 use P3tite\Data\DateTimeHelper;
@@ -90,6 +91,15 @@ class BasicEntity
     {
         $this->modified = $modified;
 
+        return $this;
+    }
+
+    /**
+     * Update modification date to current datetime
+     */
+    public function touch(): self
+    {
+        $this->modified = new DateTime();
         return $this;
     }
 
