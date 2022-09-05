@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @link https://github.com/SchrodtSven/P3tite
  * @package P3tite
  * @version 0.1
- * @since 2022-08-12
+ * @since 2022-09-01
  */
 
 namespace P3tite\Code\Lang\Php;
@@ -16,4 +16,6 @@ namespace P3tite\Code\Lang\Php;
 class ShellScriptBuilder
 {
     public const SHEBANG = '#!/usr/bin/env php';
+
+    # -> do chmod +x after generating byte stream!!!!
 }

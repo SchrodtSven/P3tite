@@ -24,6 +24,8 @@ class ArrayClassTest extends TestCase
         $this->assertTrue(is_int(count($foo)));
         $this->assertTrue(count($foo) === count($this->wordProvider()));
         $this->assertTrue(is_iterable($foo));
+        $this->assertTrue(is_countable($foo));
+        $this->assertInstanceOf('ArrayAccess', $foo);
     }
 
     public function testBasicOperations(): void
@@ -34,6 +36,10 @@ class ArrayClassTest extends TestCase
         $this->assertTrue(count($foo)===2);
         $this->assertTrue($foo->get(0) === 'Peter Parker');
         $this->assertTrue($foo->get(1) === 'Tony Stark');
+
+        $this->assertTrue($foo->get(0) === $foo[0]);
+        $this->assertTrue($foo->get(1) === $foo[1]);
+
         $this->assertTrue(is_iterable($foo));
         
         $foo->push('Susan Storm');

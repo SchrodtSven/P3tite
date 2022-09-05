@@ -51,6 +51,7 @@ class BasicEntityTest extends UnitTest
     public function testBasix(int $id, DateTime $created, DateTime $modified): void
     {
             $entity = $this->getAnonymousBasicEntityChild($id, $created, $modified);
+            var_dump($entity);
             $this->assertTrue(is_int($entity->getId()));
          //  var_dump($this->entity);die;
             

@@ -7,7 +7,7 @@ declare(strict_types=1);
  *  <code>
  *  font-family: Comic sans, Gargoyle;
  * 
- *  background: pink url(style_assets/foo.svg) right 2.3em top 0.666em no-repeat;
+ *  background: pink url(style_assets/SvenFoo.svg) right 2.3em top 0.666em no-repeat;
  *  </code>
  * 
  * @author Sven Schrodt<sven@schrodt.club>

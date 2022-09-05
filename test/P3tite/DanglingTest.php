@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 use P3tite\Type\StringClass;
 use P3tite\Type\ArrayClass;
-use PHPUnit\Framework\TestCase;
+use P3tite\Core\Testing\UnitTest;
 use P3tite\Code\Mocking\RandomData;
 use P3tite\Type\Binary\Byte;
 use P3tite\Data\DateTimeHelper;
@@ -22,7 +22,7 @@ use P3tite\Code\Lang\Sql\Attribute;
 use P3tite\Code\Mocking\CharacterGeneratorService;
 use P3tite\Code\Lang\Sql\Query;
 
-class DanglingTest extends TestCase
+class DanglingTest extends UnitTest
 {
 
 
@@ -33,7 +33,8 @@ class DanglingTest extends TestCase
 
   public function testHeroes()
   {
-   
+    $parsed = new ArrayClass();
+    echo getcwd();
     $this->assertTrue(2 === 1 + 1);
     //die('FOO:: ' . $this->max  -$this->min);
   }

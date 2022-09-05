@@ -65,6 +65,16 @@ class ArrayClass implements \Countable, \Iterator, \ArrayAccess
         return $this;
     }
 
+    public function keyExists(string $key): bool
+    {
+        return array_key_exists($key, $this->content);
+    }
+
+    public function indexExists(int $index): bool
+    {
+        return isset($this->content[$index]);
+    }
+
     public function unset(int $index): self
     {
         if (array_key_exists($index, $this->content)) {
